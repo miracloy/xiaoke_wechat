@@ -1,0 +1,43 @@
+<!--下订单界面-->
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container task bgGray">
+
+		<!--form start-->
+		<form bindsubmit="bindsubmit" report-submit>
+		<view class="zan-form noBorder">
+			<view hidden="{{!remarksOn}}">
+			<view class="zan-cell zan-form__item remarks" hidden="{{chooseDateOn || chooseTypeOn || choseDevTimeOn}}">
+				<textarea 
+					class="taskContent"
+					name="remarks"
+					type="text"
+					data-name="remarks"
+					bindinput="getCurrentData"
+					value="{{formData.remarks}}"
+					placeholder="把您的需求描述给小可听，小可专属为您服务。如：7月8月两个月，每周五下午3点需要一次下午茶，人均10元预算。配好方案之后，定期配送。" />
+			</view>
+			</view>
+			<view class="zan-cell noBorder uploadImg">
+				<view class="imgList noBorder fl">
+					<view class="item fl" wx:for="{{uploadedImgs}}" wx:key="">
+						<icon id="{{index}}" class="delImg" type="cancel" size="20" color="{{red}}" bindtap="removeUploadImg"/>
+						<image mode="aspectFit" src="{{item}}"></image>
+					</view>
+				</view>
+				<button class="chooseImg tac fl" bindtap="chooseImgs" hidden="{{uploadedImgs.length>=3}}">
+					<image class="add" src="../../../images/add.png"></image>
+					<text class="t">上传图片<br /><text class="s">最多三张</text></text>
+				</button>
+			</view>
+
+			<view class="zan-cell opeat noBorder cf">
+				<button class="zan-btn zan-btn--danger" id="0" bindtap="formSubmit" formType="submit">发起任务</button>
+			</view>
+		</view>
+		</form>
+		<!--form end-->
+
+	</view>
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+</block>

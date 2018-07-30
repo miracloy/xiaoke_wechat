@@ -1,0 +1,15 @@
+.zan-panel{border-top:none;border-bottom:1px solid #f2f2f2}
+.zan-cell::after{left:0}
+.tit{font-size:36rpx;border-bottom:1px solid #f2f2f2}
+.tit .zan-cell__ft{padding-right:20rpx;}
+.tit.zan-cell::after{display:none}
+
+
+
+
+
+
+
+
+
+

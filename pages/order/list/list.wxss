@@ -1,0 +1,26 @@
+/******update by Ethan,20171025******/
+page{background-color:#f5f5f5}
+.order .zan-tab__bd{width:100%;}
+.oClass{box-shadow:0px 0px 2px rgba(0,0,0,.2);position:relative;z-index:10}
+.oClass .zan-tab__item{width:50%;text-align:center}
+.oClass .zan-tab__title{display:block}
+
+/*orderList*/
+.orderList .zan-cell__ft.status{color:#fd6363}
+.orderList .zan-panel{border:none;position:relative}
+.billList .zan-panel .taskTip{width:118rpx;height:91rpx;position:absolute;left:20rpx;top:20rpx;z-index:20}
+.orderList .zan-cell__bd{color:#666;}
+.orderList .zan-cell::after{right:15px}
+.orderList .oInfos{padding-top:30rpx;padding-bottom:30rpx;}
+.oInfos .zan-cell__bd{padding-right:40rpx;}
+.oInfos .zan-cell__bd .t{font-size:30rpx;margin-bottom:10rpx;}
+.oInfos .zan-cell__bd .m{font-size:32rpx;}
+.distri .zan-cell__ft{width:30%}
+.orderList .zan-btn{border-color:#fd6363;height:60rpx;line-height:60rpx;color:#fd6363}
+.orderList .zan-btn.cancel{border-color:#999;color:#999;margin-right:0;margin-bottom:10rpx}
+.distri .zan-cell__bd{font-size:24rpx}
+.addBill{display:block;height:100rpx;width:100%;background-color:#f6e6e6;margin-top:20rpx;position:relative}
+.addBill image{width:42rpx;height:42rpx;position:absolute;left:50%;top:50%;margin:-21rpx 0 0 -21rpx;}
+
+
+

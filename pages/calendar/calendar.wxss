@@ -1,0 +1,61 @@
+.tit{width:100%;background-color:#f5f5f5;padding:20rpx 0;font-size:28rpx;}
+.chooseDate{height:80rpx;line-height:80rpx;background-color:#f5f5f5;overflow:hidden;padding:10rpx 0}
+.chooseDate .dBtn{width:80rpx;height:80rpx;position:relative}
+.chooseDate .dBtn image{position:absolute;width:12rpx;height:22rpx;margin-top:-11rpx;margin-left:-6rpx;top:50%;left:50%;}
+.chooseDate .dInfo text{display:inline-block;color:#fd6363;font-size:28rpx;width:50%;}
+
+/*table*/
+.tTop{border-top:1px solid #e6e6e6;width:100%}
+.tTop .i{width:150rpx;height:140rpx;position:relative}
+.tTop .i image{width:60rpx;height:64rpx;position:absolute;left:50%;top:50%;margin-left:-30rpx;margin-top:-32rpx;}
+.table .item{border-right:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;overflow:hidden;}
+.tTop .item{height:140rpx;}
+.tTop .item:last-of-type{border-right:none;}
+.tTop .tL .item{width:14.15%}
+.tTop .tL .item:last-of-type{width:15%}
+.tTop .tL .item .w,.tTop .tL .item .d{height:70rpx;line-height:70rpx;}
+.tTop .item .d{color:#fd6363}
+
+.tMain{width:100%;height:600rpx;overflow:hidden}
+.tMain .type{width:150rpx;height:100rpx;line-height:100rpx;color:#fd6363;font-size:28rpx;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}
+.tLine .item{height:100rpx;line-height:100rpx;}
+.tList .item{height:100rpx;float:left;overflow:hidden;text-align:center;font-size:28rpx;width:14.15%}
+.tList .item:nth-child(7n){border-right:none;width:15%}
+.tList .item .b,.tList .item .o{height:50rpx;box-sizing:border-box;overflow:hidden}
+.tList .item .b{line-height:70rpx;}
+.tList .item .o{line-height:30rpx;}
+
+/*myPop*/
+.showAppoint .popMain{margin-top:-450rpx;}
+.myPop .zan-tab__bd{width:100%}
+.myPop .zan-tab__title{display:block;}
+.popM{max-height:700rpx;}
+.popM .a{display:block;overflow:hidden;padding:25rpx 10rpx;border-bottom:1px solid #f1f1f1;font-size:28rpx;height:40rpx;line-height:40rpx;color:#999}
+.popM .a:last-of-type{border-bottom:none}
+.popM .a .t{width:330rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.popM .a .p{width:120rpx}
+.popM.bill .a image{width:40rpx;height:40rpx;}
+.popM.order .a image{width:11rpx;height:21rpx;position:relative;top:8rpx;}
+
+/*swiper*/
+.swiper{height:250rpx}
+.slide-image{width:750rpx;height:250rpx}
+
+/*showAppAd*/
+.showAppAd .popMain{margin-top:-450rpx;background:none}
+.showAppAd .popMain .m{padding:0;width:600rpx;height:900rpx;background:none;overflow:hidden;border-radius:20rpx;-webkit-border-radius:20rpx;-moz-border-radius:20rpx}
+.adImage{width:600rpx;height:900rpx}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

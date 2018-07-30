@@ -1,0 +1,88 @@
+<!--订单详情-->
+<block wx:if="{{isLoaded}}">
+	<import src="/components/zanui/toast/index.wxml" />
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+	<view class="container order">
+
+		<view class="orderStatus completed">{{order.status.friendlyType}}订单</view>
+		<view class="zan-panel address bgGray">
+			<view class="zan-cell">
+				<view class="zan-cell__bd">姓名：{{order.billingAddress.fullName}}</view>
+				<view class="zan-cell__ft">{{order.billingAddress.phonePrimary}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd w100">
+					配送地址：
+					{{order.billingAddress.city}}
+					{{order.billingAddress.stateProvinceRegion}}
+					{{order.billingAddress.addressLine}}
+				</view>
+			</view>
+		</view>
+
+		<view class="shops">
+			<view class="zan-panel">
+				<view class="zan-cell">
+					<view class="zan-cell__bd">购买商品：</view>
+				</view>
+			</view>
+
+			<block 
+				wx:for="{{order.orderItems}}"
+				wx:key="{{index}}">
+			<view class="zan-panel">
+				<view class="zan-cell bgGray">
+					<view class="zan-cell__bd">{{item.name}}</view>
+					<view class="zan-cell__ft">￥{{item.amount}}</view>
+				</view>
+				<view class="zan-cell bgGray info">
+					<view class="zan-cell__bd gg">
+						<block 
+							wx:for="{{item.productOption}}"
+							wx:key="{{key}}"
+							wx:for-item="p">
+							{{p.attributeName}}:{{p.attributeValue}}
+						</block>
+					</view>
+					<view class="zan-cell__ft">x{{item.quantity}}</view>
+				</view>
+			</view>	
+			</block>
+			
+			<view class="zan-panel total">
+				<view class="zan-cell">
+					<view class="zan-cell__bd">合计：￥{{order.amount}}</view>
+					<view class="zan-cell__ft">
+						<!-- <button class="zan-btn zan-btn--small">
+							<view class="block" bindtap="oneMoreOrder">再来一单</view>
+						</button> -->
+						<button class="zan-btn zan-btn--small">
+							<view class="block" bindtap="dial">
+								联系商家
+							</view>
+						</button>
+						
+					</view>
+				</view>
+			</view>
+
+			<view class="zan-panel bgGray orderInfo">
+				<view class="zan-cell">
+					<view class="zan-cell__bd">订单编号：{{order.orderNumber}}</view>
+				</view>
+				<view class="zan-cell">
+					<view class="zan-cell__bd">订单时间：{{orderDate}}</view>
+				</view>
+				<view class="zan-cell">
+					<view class="zan-cell__bd">配送时间：{{deliveryDate}}</view>
+				</view>
+			</view>
+
+		</view>
+
+	</view>
+</block>
+
+
+
+

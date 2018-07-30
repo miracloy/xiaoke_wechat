@@ -1,0 +1,17 @@
+.slgon{height:123rpx;margin:70rpx 0;}
+.slgon image{width:337rpx;height:123rpx;margin:0 auto;display:block}
+.codeImg{position:relative}
+.codeImg,.codeImg image{width:750rpx;height:668rpx;display:block;}
+.codeImg .code{width:196rpx;height:196rpx;position:absolute;left:50%;top:50%;margin-left:-98rpx;margin-top:-120rpx;z-index:20}
+.codeT{margin-top:40rpx;color:#999;}
+.codeT .bt{font-size:32rpx;}
+.codeT .st{font-size:24rpx;margin-top:20rpx;}
+.zan-btn{position:fixed;width:100%;bottom:0;left:0;background-color:#fd6363;border-radius:0;border-color:#fd6363}
+
+
+
+
+
+
+
+

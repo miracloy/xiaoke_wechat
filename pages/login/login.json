@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "z-pick": "../../components/z-picker/index",
+    "z-ticker": "../../components/z-ticket/index"
+  }
+}

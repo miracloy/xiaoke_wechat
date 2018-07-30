@@ -1,0 +1,65 @@
+<!--收货地址列表-->
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<!--container start-->
+	<view class="container addressList">
+
+		<block 
+			wx:for="{{eList}}"
+			wx:key="">
+		<view class="zan-panel item">
+			<view class="zan-cell pi">
+				<view class="zan-cell__bd">{{item.fullName}}</view>
+				<view class="zan-cell__ft">{{item.phonePrimary}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">
+					{{item.stateProvinceRegion}}
+					{{item.city}} 
+					{{county}} 
+					{{item.addressLine}}
+				</view>
+			</view>
+			<view class="zan-cell opeat">
+				<view 
+					class="zan-cell__bd {{item.default?'checked':''}}"
+					data-id="{{item.id}}"
+					bindtap="setDefalutAddress">
+					<radio-group class="radio-group analog-radio">
+						<label class="radio">
+							<radio name="address" value="{{item.id}}" checked="{{item.default}}"/>
+						</label>
+						<view class="zan-icon zan-icon-{{item.default?'checked':'check'}}"></view>
+					</radio-group>
+					<text>{{item.default?'默认地址':'设为默认'}}</text>
+				</view>
+				<view class="zan-cell__ft">
+					<view 
+						class="delete fr"
+						data-id="{{item.id}}"
+						bindtap="delAddress">
+						<image 
+							class="fl"
+							src="../../../images/delete.png">
+						</image>
+						<text class="fl">删除</text>
+					</view>
+					<navigator 
+						class="write fr"
+						url="../detail/detail?addressId={{item.id}}">
+						<image class="fl" src="../../../images/write.png"></image>
+						<text class="fl">编辑</text>
+					</navigator>
+				</view>
+			</view>
+		</view>
+		</block>
+
+		<view class="cartOpeat flex">
+			<navigator url="../add/add" class="zan-btn zan-btn--danger flex-1">添加新地址</navigator>
+		</view>
+		
+	</view>
+	<!--container end-->
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

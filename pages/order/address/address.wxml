@@ -1,0 +1,39 @@
+<!--收货地址列表-->
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<!--container start-->
+	<view class="container addressList">
+
+		<block 
+			wx:for="{{eList}}"
+			wx:key="{{index}}">
+		<view 
+			class="zan-panel item"
+			id="{{item.id}}"
+			bindtap="chooseAdd">
+			<view class="zan-cell pi">
+				<view class="zan-cell__bd">{{item.fullName}}</view>
+				<view class="zan-cell__ft">{{item.phonePrimary}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">
+					<block  wx:if="{{item.default}}">
+					<text class="pink">[默认地址]</text>
+					</block>
+					{{item.stateProvinceRegion}}
+					{{item.city}} 
+					{{county}} 
+					{{item.addressLine}}
+				</view>
+			</view>
+		</view>
+		</block>
+
+		<view class="cartOpeat flex">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="manageAddress">新增收货地址</button>
+		</view>
+		
+	</view>
+	<!--container end-->
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

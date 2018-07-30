@@ -1,0 +1,170 @@
+/* pages/invite/index/index.wxss */
+.invite{
+  background: #F1F1F2;
+  height: 100vh;
+}
+
+.invite-head{
+  height: 400rpx;
+  color: #fff;
+  background: #FD6363;
+  display: flex;
+  flex-direction: column;
+}
+
+.invite-rules{
+  font-size: 24rpx;
+  font-weight: lighter;
+  text-align: right;
+  margin: 20rpx 24rpx 0 0;
+}
+
+.invite-code{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  flex: 1 0 auto;
+}
+
+.invite-code-text{
+  font-size: 34rpx;
+  text-align: center;
+  margin-bottom: 28rpx;
+}
+
+.invite-code-number{
+  color: #333;
+  font-size: 60rpx;
+  text-align: center;
+  background: #fff;
+  width: 400rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  border-radius:10rpx; 
+}
+
+.invite-head-banner{
+  font-size: 30rpx;
+  background: #FE8A8A;
+  text-align: center;
+  height: 90rpx;
+  display: flex;
+  flex-grow: 1;
+  flex: 0 0 auto;
+}
+.invite-head-item{
+  width: 33%;
+  line-height:45px;
+}
+.invite-head-item:not(:first-of-type){
+  border-left:1rpx #fff solid;
+}
+.invite-head-item-active{
+  background: #F34747;
+}
+
+/* 列表 */
+.invite-list{
+  margin: 20rpx 30rpx 0rpx;
+}
+.invite-list-item{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 152rpx;
+  background-color: #fff;
+}
+.invite-list-item::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 120rpx;
+	background: #EEE;
+	width: 80%;
+	height: 1px;
+}
+
+.invite-list-item-img{
+  margin: 0 30rpx 0 20rpx;
+}
+.invite-list-item-name{
+  color: #333;
+  font-size: 30rpx;
+}
+.invite-list-item-datetime{
+  color: #aaa;
+  font-size: 22rpx;
+}
+.invite-list-item-text{
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+.invite-list-item-state{
+  color: #333;
+  font-size: 30rpx;
+  margin-right: 32rpx;
+  flex: 0 0 auto;
+}
+.invite-list-text{
+  color: #333;
+  font-size: 30rpx;
+}
+.invite-list-text-wx{
+  color: #bbb;
+  font-size: 24rpx;
+}
+.invite-list-text-history{
+  float: right;
+}
+/* 弹窗 */
+.invite-toast{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .3)
+}
+.invite-toast-success{
+  width: 600rpx;
+  height: 300rpx;
+  border-radius:10rpx; 
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.invite-toast-success-text{
+  color: #000;
+  font-size: 30rpx;
+}
+.invite-toast-success-wxnum{
+  color: #333;
+  font-size: 36rpx;
+  width: 420rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  border: #888 1rpx solid;
+  border-radius:10rpx; 
+}
+
+.invite-toast-lack{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600rpx;
+  height: 156rpx;
+  border-radius:10rpx; 
+  background: #fff;
+  color:#333;
+  justify-content: space-between;
+  padding: 72rpx 0;
+  font-size: 30rpx
+}

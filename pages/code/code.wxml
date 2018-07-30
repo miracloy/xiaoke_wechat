@@ -1,0 +1,27 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container qrCode">
+
+		<view class="slgon">
+			<image src="../../images/yiqi.jpg"></image>
+		</view>
+		<view class="codeImg">
+			<image class="code" src="{{codePath}}"></image>
+			<image class="bg" src="../../images/beizi.jpg"></image>
+		</view>
+		<view class="codeT">
+			<view class="tac bt">分享二维码共同参与</view>
+			<view class="tac st">直接扫码或截屏分享都可以</view>
+		</view>
+
+		<view bindtap="backHome" class="zan-btn zan-btn--danger">
+			返回首页
+		</view>
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>
+
+
+
+

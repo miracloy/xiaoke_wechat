@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "z-ticker": "../../../components/z-ticket/index"
+  }
+}

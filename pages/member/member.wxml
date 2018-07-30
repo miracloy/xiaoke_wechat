@@ -1,0 +1,87 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container member">
+		<!--memberInfo start-->
+		<view class="memberInfo zan-panel">
+			<view class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<view class="photo fl">
+						<image class="p fl" src="{{photos}}"> </image>
+					</view>
+					<view class="i fl">
+						<text class="name">{{userInfo.managerName}}</text>
+						<text class="tel">{{userInfo.phoneNumber}}</text>
+						<text class="money">余额：0</text>
+					</view>
+				</view>
+				<!-- <view class="zan-cell__ft"></view> --></view>
+		</view>
+		<!--memberInfo end-->
+		<!--memberList start-->
+		<view class="memberList">
+			<view bindtap="rwrlHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_calendar.png"> </image>
+					<text>任务日历</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="intiveHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_intive.jpg"> </image>
+					<text>邀请有礼</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="couponHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_coupon.jpg"> </image>
+					<text>优惠券</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="qyxxHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_company.png"> </image>
+					<text>企业信息</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="ddHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_order.png"> </image>
+					<text>我的订单</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="shHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_address.png"> </image>
+					<text>收货地址</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="zjzhHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_capital.png"> </image>
+					<text>资金账户管理</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view bindtap="xlkfHandle" class="zan-cell zan-cell--access">
+				<view class="zan-cell__bd">
+					<image class="icon" src="../../images/icon_service.png"> </image>
+					<text>联系客服</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+		</view>
+		<!--memberList end-->
+		<!--cartOpeat start-->
+		<view class="cartOpeat">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="tcHandle">退 出</button>
+		</view>
+		<!--cartOpeat end-->
+	</view>
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+</block>

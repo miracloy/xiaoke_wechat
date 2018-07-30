@@ -1,0 +1,19 @@
+<view class="coupon">
+  <block wx:if="{{!isEmpty}}">
+    <view class="coupon-text" wx:if="{{ticketUsing != 0}}">可用优惠券</view>
+    <view class="coupon-list" wx:for="{{ticketUsing}}" wx:key="item">
+      <z-ticket params="{{item}}" bindtoUse="toUse"></z-ticket>
+    </view>
+    <view class="coupon-text" wx:if="{{ticketUsed != 0}}">已用优惠券</view>
+    <view class="coupon-list" wx:for="{{ticketUsed}}" wx:key="item">
+      <z-ticket params="{{item}}" isUsed="true"></z-ticket>
+    </view>
+    <view class="coupon-text" wx:if="{{ticketPast.length != 0}}">失效优惠券</view>
+    <view class="coupon-list" wx:for="{{ticketPast}}" wx:key="item">
+      <z-ticket imgSrc="./img/ticket-icon-used.png" params="{{item}}" isUsed="true" isPast="true"></z-ticket>
+    </view>
+  </block>
+  <block wx:if="{{isEmpty}}">
+    <image class="icon-empty" style="width:400rpx; height:400rpx" src="../../../images/icon_empty.png"></image>
+  </block>
+</view>

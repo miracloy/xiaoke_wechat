@@ -1,0 +1,9 @@
+<view class="history">
+  <block wx:if="{{list}}">
+    <view class="history-list" wx:for="{{list}}" wx:key="item">
+      <view class="history-date">{{item.createdAt}}</view>
+      <z-ticker kind="history" params="{{item}}" imgSrc="{{item.productImg}}"></z-ticker>
+    </view>
+  </block>
+  <view class="history-date" wx:if="!{{list}}">暂无兑换记录</view>
+</view>

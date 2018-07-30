@@ -1,0 +1,269 @@
+<!--结算页面-->
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container order balance">
+
+		<form bindsubmit="jiesuan" report-submit>
+		<view class="zan-panel address bgGray">
+			<view class="zan-cell zan-cell--access" bindtap="changeAddress">
+				
+				<view class="zan-cell__bd">
+					<view class="i">
+						<text class="fl">姓名：{{address.fullName}}</text>
+						<text class="fr">{{address.phonePrimary}}</text>
+					</view>
+					<view class="i">
+						配送地址：
+						{{address.city}}
+						{{address.stateProvinceRegion}}
+						{{address.addressLine}}
+					</view>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+		</view>
+
+		<view class="zan-form orderDate">
+
+			<view class="zan-cell zan-form__item zan-cell--access" bindtap="chooseType">
+				<text class="zan-form__title">请选择订单类型</text>
+				<view class="zan-cell__bd orderType">
+					<block wx:for="{{choosedTypeNames}}" wx:key="{{key}}">
+					<text>{{item}}</text> 
+					</block>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+
+			<view class="zan-cell zan-form__item zan-cell--access" bindtap="chooseDate">
+				<text class="zan-form__title">请选择配送日期</text>
+				<view class="zan-cell__bd tal">
+					<text>{{chooseAllDate[0]}}</text> 
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+
+			<view class="zan-cell zan-form__item zan-cell--access chooseDevTime" bindtap="choseDevTime">
+				<text class="zan-form__title">请选择配送时间</text>
+				<view class="zan-cell__bd tal">
+					<text>{{startTs}}</text>
+					<text class="plr10">至</text>
+					<text>{{endTs}}</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+
+		</view>
+
+		<!--shops start-->
+		<view class="shops">
+			<view class="zan-panel">
+				<view class="zan-cell">
+					<view class="zan-cell__bd i">商品：</view>
+				</view>
+			</view>
+
+			<!--setmeal start-->
+			<!-- <view class="setmeal">
+				<view class="zan-panel item">
+					
+					<view class="zan-cell">
+						<view class="zan-cell__bd">{{item.name}}</view>
+						<view class="zan-cell__ft">x {{item.quantity}}</view>
+					</view>
+
+					<view class="zan-cell info">
+						<view class="zan-cell__bd">
+							<block 
+								wx:for="{{item.productOption}}"
+								wx:key="{{index}}"
+								wx:for-item="p">
+								<view>{{p.attributeName}}:{{p.attributeValue}}</view>
+							</block>
+						</view>
+						<view class="zan-cell__ft">x{{item.quantity}}</view>
+					</view>
+					<view class="zan-cell info">
+						<view class="zan-cell__bd">
+							<block 
+								wx:for="{{item.productOption}}"
+								wx:key="{{index}}"
+								wx:for-item="p">
+								<view>{{p.attributeName}}:{{p.attributeValue}}</view>
+							</block>
+						</view>
+						<view class="zan-cell__ft">x{{item.quantity}}</view>
+					</view>
+
+					<view class="total">
+						<view class="tar fr">总价：￥ {{item.amount}}</view>
+					</view>
+
+				</view>
+			</view> -->
+			<!--setmeal end-->
+
+			<!--single start-->
+			<view class="single">
+				<block 
+					wx:for="{{order.orderItems}}"
+					wx:key="{{index}}">
+				<view class="zan-panel item">
+							
+					<view class="zan-cell">
+						<view class="zan-cell__bd">{{item.name}}</view>
+						<view class="zan-cell__ft">x {{item.quantity}}</view>
+					</view>
+
+					<view class="zan-cell info">
+						<view class="zan-cell__bd">
+							<block 
+								wx:for="{{item.productOption}}"
+								wx:key="*this"
+								wx:for-item="p">
+								<view>{{p.attributeValue}}</view>
+							</block>
+						</view>
+					</view>
+				</view>	
+				</block>
+			</view>
+			<!--single end-->
+
+		</view>
+		<!--shops end-->
+
+		<!--setOrder start-->
+		<view class="setOrder flex">
+			<view class="cartInfo fl flex-1">
+				<!-- <text class="t">总计：￥ {{order.amount}}</text> -->
+				<text class="t">总计：￥ {{totalPrice || order.amount}}</text>
+			</view>
+			<button class="zan-btn zan-btn--danger" bindtap="settlement" formType="submit">确认结算</button>
+		</view>
+		<!--setOrder end-->
+		</form>
+
+		<!--chooseType start-->
+		<view 
+			class="choseOrderType myPop"
+			hidden="{{!chooseTypeOn}}"
+			catchtouchmove="mynotouch">
+			<view class="popMain animated {{chooseTypeOn?'bounceInUp':'bounceOutDown'}}">
+				<view class="tac tit">订单类型选择</view>
+				<view class="m">
+
+					<radio-group bindchange="chooseOrderType">
+					<block wx:for="{{orderType}}" wx:key="{{index}}">
+					<view class="item">
+						<label class="checkbox">
+							<radio value="{{item.type}}" checked="{{item.checked}}"/><text>{{item.name}}</text>
+						</label>
+					</view>
+					</block>
+					</radio-group>
+
+					<view class="o">
+						<text>注意事项：小伙伴们不做选择的话，默认选择其他选项</text>
+						<button class="zan-btn zan-btn--danger" bindtap="confirmOrderType">确定</button>
+					</view>
+
+				</view>
+			</view>
+			<view class="popMask" bindtap="closePop"></view>
+		</view>
+		<!--chooseType end-->
+
+		<!--chooseDate start-->
+		<view 
+			class="chooseDate myPop"
+			hidden="{{!chooseDateOn}}"
+			catchtouchmove="mynotouch">
+			<view class="popMain animated {{chooseDateOn?'bounceInUp':'bounceOutDown'}}">
+				<view class="m">
+
+					<view class="calendar">
+
+						<!--日历部分 start-->
+						<view class="flex box box-tb box-align-center">
+							<view class="calendar pink-color box box-tb">
+								<view class="top-handle fs28 box box-lr box-align-center box-pack-center">
+									<view class="prev box box-rl" bindtap="handleCalendar" data-handle="prev">
+										<view class="prev-handle box box-lr box-align-center box-pack-center">
+											<view class="arrow_l"></view>
+										</view>
+									</view>
+									<view bindtap="chooseYearAndMonth" class="date-area box box-lr box-align-center box-pack-center">{{cur_year || "--"}} 年 {{cur_month || "--"}} 月</view>
+									<view class="next box box-lr" bindtap="handleCalendar" data-handle="next">
+										<view class="next-handle box box-lr box-align-center box-pack-center">
+											<view class="arrow_r"></view>
+										</view>
+									</view>
+								</view>
+								<view class="weeks box box-lr box-pack-center box-align-center">
+									<view class="flex week fs28" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+								</view>
+								<view class="days box box-lr box-wrap">
+									<view wx:if="{{hasEmptyGrid}}" class="grid white-color box box-align-center box-pack-center" wx:for="{{empytGrids}}" wx:key="{{index}}" data-idx="{{index}}">
+									</view>
+									<view class="grid white-color box box-align-center box-pack-center" wx:for="{{days}}" wx:key="{{index}}" data-idx="{{index}}" data-choose="{{item.canChoose}}" bindtap="tapDayItem">
+										<view 
+											class="day {{item.choosed ? 'border-radius pink-bg' : ''}} box box-align-center box-pack-center {{item.canChoose?'canChoose':''}}">
+											{{item.day}}
+											<image 
+												hidden="{{!item.choosed}}"
+												class="gou"	
+												src="../../../images/gou.png"></image>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+						<!--日历部分 end-->
+
+					</view>
+
+					<button class="zan-btn zan-btn--danger" bindtap="confirmDate">确认</button>
+
+				</view>
+			</view>
+			<view class="popMask" bindtap="closePop"></view>
+		</view>
+		<!--chooseDate end-->
+
+		<!--choseDevTime start-->
+		<view 
+			class="choseDevTime myPop"
+			hidden="{{!choseDevTimeOn}}"
+			catchtouchmove="mynotouch">
+			<view class="popMain animated {{choseDevTimeOn?'bounceInUp':'bounceOutDown'}}">
+				<view class="tac tit">配送时间选择</view>
+				<view class="m">
+
+					<picker-view 
+						class="timePicker"
+						value="{{devCurTime}}" 
+						indicator-style="height:50px;"
+						bindchange="bindDevTimeChange">
+						<picker-view-column>
+							<view wx:for="{{devTimeArray}}" wx:key="{{index}}" class="i" style="height:80rpx">{{item}}</view>
+						</picker-view-column>
+						<text> 至 </text>
+						<picker-view-column>
+							<view wx:for="{{devTimeArray}}" wx:key="{{index}}" class="i">{{item}}</view>
+						</picker-view-column>
+					</picker-view>
+
+					<view class="o">
+						<button class="zan-btn zan-btn--danger" bindtap="confirmDevTime">确定</button>
+					</view>
+
+				</view>
+			</view>
+			<view class="popMask" bindtap="closePop"></view>
+		</view>
+		<!--choseDevTime end-->
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

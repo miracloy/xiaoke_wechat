@@ -1,0 +1,75 @@
+{
+	"pages":[
+		"pages/home/home",
+		"pages/article/list/list",
+		"pages/article/detail/detail",
+		"pages/bill/detail/detail",
+		"pages/shopcart/shopcart",
+		"pages/member/member",
+		"pages/calendar/calendar",
+		"pages/login/login",
+		"pages/order/checkout/checkout",
+		"pages/task/task/task",
+		"pages/task/detail/detail",
+		"pages/order/list/list",
+		"pages/code/code",
+		"pages/order/address/address",
+		"pages/goods/list/list",
+		"pages/address/add/add",
+		"pages/address/list/list",
+		"pages/address/detail/detail",
+		"pages/bill/list/list",
+		"pages/come/come",
+		"pages/order/detail/detail",
+		"pages/capital/tList/tList",
+		"pages/capital/index/index",
+		"pages/capital/list/list",
+		"pages/company/company",
+		"pages/pay/pay",
+    "pages/invite/coupon/coupon",
+    "pages/invite/index/index",
+    "pages/invite/history/history",
+    "pages/invite/rule/rule"
+	],
+	"window":{
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"navigationBarTitleText": "小可企业购",
+		"navigationBarTextStyle":"black",
+		"backgroundTextStyle":"dark",
+		"backgroundColor":"#FFFFFF"
+	},
+	"tabBar": {
+		"backgroundColor": "#FFFFFF",
+		"color":"#999999",
+		"borderStyle":"black",
+		"selectedColor": "#fd6365",
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"text": "首页推荐",
+				"iconPath": "images/home.png",
+				"selectedIconPath": "images/home_cur.png"
+			},{
+				"pagePath": "pages/goods/list/list",
+				"text": "小可商城",
+				"iconPath": "images/shopping.png",
+				"selectedIconPath": "images/shopping_cur.png"
+			},{
+				"pagePath": "pages/task/task/task",
+				"text": "下任务",
+				"iconPath": "images/task.png",
+				"selectedIconPath": "images/task_cur.png"
+			},{
+				"pagePath": "pages/order/list/list",
+				"text": "清单/订单",
+				"iconPath": "images/order.png",
+				"selectedIconPath": "images/order_cur.png"
+			},{
+				"pagePath": "pages/member/member",
+				"text": "个人中心",
+				"iconPath": "images/member.png",
+				"selectedIconPath": "images/member_cur.png"
+			}
+		]
+	}
+}

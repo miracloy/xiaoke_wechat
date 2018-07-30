@@ -1,0 +1,65 @@
+<!--清单列表-->
+<import src="/components/zanui/loadmore/index.wxml" />
+<import src="/components/zanui/toast/index.wxml" />
+
+<block wx:if="{{isLoaded}}">
+	<!--container start-->
+	<view class="container bill">
+
+		<!--billInfo start-->
+		<view class="zan-panel billInfo">
+			<view class="zan-cell zan-cell--access" bindtap="taskHandle">
+				<view class="zan-cell__bd">
+					<view class="t">{{taskDate}}</view>
+					<view class="i">{{taskInfo.name}}</view>
+				</view>
+				<view class="zan-cell__ft pink">点击查看</view>
+			</view>
+		</view>
+		<!--billInfo end-->
+
+		<!--billList start-->
+		<view class="orderList billList">
+				
+			<block 
+				wx:for="{{bill}}"
+				wx:key="{{index}}">
+			<view class="zan-panel item" id="{{item.id}}" bindtap="billHandle">
+				<view class="zan-cell">
+					<view class="zan-cell__bd">配送：{{item.psDate}}</view>
+					<!-- <view class="zan-cell__ft">购买 <text class="pink">{{item.orderNum}}</text> 次</view> -->
+				</view>
+				<view class="zan-cell zan-cell--access oInfos">
+					<view class="zan-cell__bd">
+						<view class="t">{{item.name}}</view>
+						<view class="m">总金额：￥{{totalPrice || item.total}}</view>
+						<block wx:if="{{item.expirationDate !== null}}">
+						<view class="l">
+							距离默认下单还有：
+							<text>{{item.surTimeDay}}</text> 天
+							<text>{{item.surTimeHour}}</text> 时
+							<text>{{item.surTimeMinute}}</text> 分
+						</view>
+						</block>
+					</view>
+					<view class="zan-cell__ft"></view>
+				</view>
+			</view>
+			</block>
+
+		</view>
+		<!--billList end-->
+
+		<view class="cartOpeat flex">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="backToList">返回清单列表</button>
+		</view>
+
+		<!--loadmore start-->
+		<template is="zan-loadmore" data="{{loading}}" />
+		<template is="zan-loadmore" data="{{nodata}}" />
+		<!--loadmore end-->
+		
+	</view>
+	<!--container end-->
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+</block>

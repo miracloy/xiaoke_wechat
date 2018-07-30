@@ -1,0 +1,21 @@
+.coupon{
+  background-color: #F1F1F2;
+  height: 100vh;
+}
+.icon-empty{
+  margin: 200rpx 196rpx;
+}
+
+.coupon-text{
+  font-size: 24rpx; 
+  color: #AAAAAA;
+  padding: 15rpx 20rpx;
+}
+
+.coupon-list{
+  margin: 0 15rpx;
+}
+
+.coupon-list-used .ticket-text-title{
+  color: #CCCCCC;
+}

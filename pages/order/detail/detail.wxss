@@ -1,0 +1,33 @@
+/******update by Ethan,20171025******/
+.orderStatus{border-left:12rpx solid #ccc;height:30rpx;line-height:30rpx;font-size:28rpx;margin:0 25rpx;padding-left:10rpx;}
+.orderStatus.completed{color:#fd6363;border-color:#fd6363}
+.zan-panel{border:none}
+.zan-cell::after{display:none}
+.zan-cell .zan-cell__bd,.zan-cell .zan-cell__ft{width:50%;color:#666}
+.zan-cell__bd.w100{width:100%}
+.address .zan-cell:first-of-type{padding-bottom:0}
+.address .zan-cell:last-of-type{padding-top:10rpx;}
+.gg{margin:0}
+
+.shops .zan-panel{margin-top:0;padding:0 25rpx;margin-bottom:10rpx;}
+.shops .zan-panel .zan-cell{padding-bottom:0}
+.shops .zan-cell.info{padding-top:10rpx;padding-bottom:20rpx}
+.shops .zan-cell.info .zan-cell__bd,.shops .zan-cell.info .zan-cell__ft{color:#999;font-size:24rpx;}
+.shops .zan-panel:first-of-type{padding:0;margin-top:10rpx;}
+
+.total .zan-cell{padding:0 0 0 20rpx;height:60rpx;line-height:60rpx;margin:20rpx 0;}
+.total .zan-cell__bd{color:#fc6365;font-size:32rpx;}
+.total .zan-btn{color:#fc6365;border-color:#fc6365;padding-left:0;padding-right:0;width:140rpx;}
+.orderInfo{margin:0 25rpx;}
+.orderInfo .zan-cell:last-of-type{padding-bottom:20rpx;}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+<!--下订单界面-->
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container task bgGray">
+
+		<!-- <view class="zan-panel address">
+			<view class="zan-cell zan-cell--access">
+				
+				<view class="zan-cell__bd">
+					<view class="i">
+						<text class="fl">姓名：{{address.fullName}}</text>
+						<text class="fr">{{address.phonePrimary}}</text>
+					</view>
+					<view class="i">
+						配送地址：
+						{{address.city}}
+						{{address.stateProvinceRegion}}
+						{{address.addressLine}}
+					</view>
+				</view>
+			</view>
+		</view> -->
+
+		<view class="zan-form">
+			<!-- <view class="zan-cell zan-form__item">
+				<text class="zan-form__title">下任务时间：</text>
+				<view class="zan-cell__bd">
+					{{taskInfo.createdAt}}
+				</view>
+			</view>
+			<view class="zan-cell zan-form__item">
+				<view class="zan-cell__bd">
+					<text>{{taskInfo.name}}</text> 
+				</view>
+			</view>
+			<view class="zan-cell zan-form__item zan-cell--access">
+				<text class="zan-form__title">下单日期：</text>
+				<view class="zan-cell__bd tal">
+					<text>{{taskInfo.orderTs[0]}}</text> 
+					<text class="plr10">至</text>
+					<text>{{taskInfo.orderTs[taskInfo.orderTs.length-1]}}</text>
+				</view>
+			</view>
+			<view class="zan-cell zan-form__item zan-cell--access chooseDevTime">
+				<text class="zan-form__title">配送时间：</text>
+				<view class="zan-cell__bd tal">
+					<text>{{taskInfo.startTs}}</text>
+					<text class="plr10">至</text>
+					<text>{{taskInfo.endTs}}</text>
+				</view>
+			</view>
+			<view class="zan-cell zan-form__item zan-cell--access">
+				<text class="zan-form__title">订单类型：</text>
+				<view class="zan-cell__bd orderType tal">
+					<text>{{taskInfo.orderType.friendlyType}}</text> 
+				</view>
+			</view>
+			<view class="zan-cell zan-form__item">
+				<text class="zan-form__title">套餐类型：</text>
+				<view class="zan-cell__bd">
+					<text>{{taskInfo.packageType.friendlyType}}</text> 
+				</view>
+			</view> -->
+
+			<!--套餐类型为单人 start-->
+			<!-- <block wx:if="{{taskInfo.packageType.type == 'SINGLE'}}">
+			<view class="zan-cell zan-form__item flex">
+				<text class="zan-form__title">人数：</text>
+				<view class="zan-cell zan-form__item flex-1">
+					<text>{{taskInfo.num}}人</text>
+				</view>
+			</view>
+			<view class="zan-cell zan-form__item flex">
+				<text class="zan-form__title">人均消费标准：</text>
+				<view class="zan-cell zan-form__item flex-1">
+					<text>{{taskInfo.price}}元</text>
+				</view>
+			</view>
+			</block> -->
+			<!--套餐类型为单人 end-->
+
+			<!--套餐类型为分享 start-->
+			<!-- <block wx:else>
+			<view class="zan-cell zan-form__item flex">
+				<text class="zan-form__title">总预算金额：</text>
+				<view class="zan-cell zan-form__item flex-1">
+					<text>{{taskInfo.detailtotal}}元</text>
+				</view>
+			</view>
+			</block> -->
+			<!--套餐类型为分享 end-->
+			<block wx:if="{{taskInfo.remarks.length>0}}">
+			<view class="zan-cell zan-form__item remarks">
+				<view class="taskContent">
+					<text>{{taskInfo.remarks}}</text>
+				</view>
+			</view>
+			</block>
+
+			<view class="zan-cell imgList noBorder">
+				<view class="item fl" wx:for="{{taskInfo.medias}}" wx:key="">
+					<image mode="widthFix" src="{{item.url}}"></image>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="cartOpeat flex">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="goToBillList">返回清单列表</button>
+		</view>
+
+	</view>
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+</block>

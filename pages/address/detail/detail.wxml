@@ -1,0 +1,65 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<!--container start-->
+	<view class="container addressDetail">
+
+		<form bindsubmit="reviseAddress" report-submit>
+		<view class="zan-form">
+			<view class="zan-cell zan-form__item">
+				<text class="zan-form__title">收货人</text>
+				<input
+					class="zan-form__input zan-cell__bd"
+					name="fullName"
+					value="{{address.fullName}}"
+					placeholder="请输入收货人姓名"/>
+			</view>
+			<view class="zan-cell zan-form__item">
+				<text class="zan-form__title">联系电话</text>
+				<input
+					class="zan-form__input zan-cell__bd"
+					type="number"
+					name="phonePrimary"
+					value="{{address.phonePrimary}}"
+					placeholder="请输入联系电话"/>
+			</view>
+			<view class="zan-cell zan-form__item zan-cell--last-child zan-cell--access">
+				<text class="zan-form__title">选择区域</text>
+				<view class="zan-form__input zan-cell__bd">
+					<picker 
+						mode="region" 
+						bindchange="bindRegionChange"
+						value="{{region}}" 
+						custom-item="{{customItem}}">
+						<view class="picker tar">
+							{{region[0]}} {{region[1]}} {{region[2]}}
+						</view>
+					</picker>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</view>
+			<view class="zan-cell zan-form__item detail">
+				<textarea placeholder="请填写您的详细地址" name="addressLine" value="{{address.addressLine}}" />
+			</view>
+		</view>
+
+		<view class="zan-panel delBtn">
+			<view 
+				class="zan-cell delAddress"
+				bindtap="delAddress">
+				删除地址
+			</view>
+		</view>
+
+		<view class="cartOpeat flex">
+			<button 
+				class="zan-btn zan-btn--danger flex-1"
+				formType="submit">
+				确认修改
+			</button>
+		</view>
+		</form>
+		
+	</view>
+	<!--container end-->
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

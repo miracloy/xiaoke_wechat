@@ -1,0 +1,17 @@
+/*payInfo*/
+page{background-color:#f9f9f9}
+radio{transform:scale(.9);-webkit-transform:scale(.9)}
+.zan-panel{border-top:none}
+.zan-cell::after{left:0;background:#f2f2f2}
+.zan-cell--access .zan-cell__ft::after{border-color:#fb6264;height:18rpx;width:18rpx;border-width:2rpx 2rpx 0 0}
+.payInfo{margin:25rpx;border:1px solid #f0f0f0;background-color:#fff;border-radius:10rpx;-webkit-border-radius:10rpx;-moz-border-radius:10rpx}
+.payInfo .zan-cell{border-bottom:1px solid #f0f0f0}
+.radio-group .checkbox:last-of-type .zan-cell{border:none}
+.payInfo .t{font-size:32rpx;line-height:80rpx}
+.payInfo .photo{width:80rpx;height:80rpx;border-radius:5rpx;-webkit-border-radius:5rpx;-moz-border-radius:5rpx;overflow:hidden;margin-right:20rpx}
+.payInfo .zan-cell__ft{padding:0}
+.tips{margin:30rpx 25rpx}
+
+/*cartOpeat*/
+.cartOpeat{margin:120rpx 25rpx}
+.cartOpeat .zan-btn{width:100%;border:none;background-color:#fd6363;border-color:#fd6363;z-index:20}

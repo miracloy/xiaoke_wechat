@@ -1,0 +1,52 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container capital">
+
+		<view class="zan-panel">
+			<view class="zan-cell companyName">
+				<view class="zan-cell__bd">{{companyName}}</view>
+			</view>
+			<view class="zan-cell tit">
+				<view class="zan-cell__bd">
+					<view>账单</view>
+					<view class="money">{{capitalInfo.reditAmount}}</view>
+				</view>
+				<!--前往获取当前月的账单页面-->
+				<navigator url="../list/list" class="zan-cell__ft mingxi">
+					<view>明细 <image src="../../../images/arrow_r.png"></image></view>
+				</navigator>
+			</view>
+			<view class="zan-cell item">
+				<view class="zan-cell__bd">
+					<image class="i fl" src="../../../images/icon_credit.png"></image>
+					<text>信用额度</text>
+				</view>
+				<view class="zan-cell__ft">{{capitalInfo.quotaAmount}}</view>
+			</view>
+			<view class="zan-cell item">
+				<view class="zan-cell__bd">
+					<image class="i fl" src="../../../images/icon_balance.png"></image>
+					<text>结算截止日期</text>
+				</view>
+				<view class="zan-cell__ft">{{settleTs}}</view>
+			</view>
+			<view class="zan-cell item">
+				<view class="zan-cell__bd">
+					<image class="i fl" src="../../../images/icon_balance.png"></image>
+					<text>对账截止日期</text>
+				</view>
+				<view class="zan-cell__ft">{{accountTs}}</view>
+			</view>
+			<!--前往获取所有月的账单页面-->
+			<!-- <navigator class="zan-cell zan-cell--access item" url="../tList/tList">
+				<view class="zan-cell__bd">
+					<image class="i fl" src="../../../images/icon_accountHis.png"></image>
+					<text>历史账目</text>
+				</view>
+				<view class="zan-cell__ft"></view>
+			</navigator> -->
+		</view>
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

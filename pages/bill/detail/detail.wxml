@@ -1,0 +1,90 @@
+<!--清单对应的购物车-->
+<import src="/components/zanui/quantity/index.wxml" />
+<import src="/components/zanui/toast/index.wxml" />
+
+<block wx:if="{{isLoaded}}">
+	<view class="container shopingCart">
+
+		<view class="zan-panel">
+			<view class="zan-cell bgGray">
+				<view class="zan-cell__bd" bindtap="chooseAll">
+					<checkbox-group 
+						class="radio-group analog-radio" >
+						<label class="checkbox">
+							<checkbox value="" checked="{{chooseAllOn}}"/>
+						</label>
+						<view class="zan-icon zan-icon-{{chooseAllOn?'checked':'check'}}"></view>
+					</checkbox-group>
+					<text class="grey">所有商品</text>
+				</view>
+				<view class="zan-cell__ft pink">
+					合计： ￥<text>{{totalPrice}}</text>
+				</view>
+			</view>
+		</view>
+
+		<!--billList start-->
+		<view class="zan-panel billList">
+
+			<block wx:for="{{goods}}" wx:key="">
+			<view class="zan-card">
+				<checkbox-group class="radio-group analog-radio" id="{{item.id}}" bindtap="chooseSingle">
+					<label class="checkbox">
+						<checkbox value="{{item.id}}" checked="{{item.checked}}"/>
+					</label>
+					<view class="zan-icon zan-icon-{{item.checked?'checked':'check'}} zan-icon-check"></view>
+				</checkbox-group>
+
+				<view class="zan-card__thumb" id="{{item.id}}" bindtap="chooseSingle">
+					<image class="zan-card__img"
+						src="{{item.img}}"
+						mode="aspectFit"></image>
+				</view>
+
+				<view class="zan-card__detail" id="{{item.id}}" bindtap="chooseSingle">
+					<view class="zan-card__detail-row">
+						<view class="zan-card__left-col zan-ellipsis--l2">
+							{{item.name}}
+						</view>
+						<view class="zan-card__left-col gray">
+							<block wx:for="{{item.productOption}}" wx:key="" wx:for-item="gg">
+								<text>{{gg.attributeValue}} </text>
+							</block>
+						</view>
+						<view class="zan-card__left-col">
+							<text class="fl pink">¥ {{item.amount}}</text>
+						</view>
+					</view>
+				</view>
+				
+				<view class="goodsnum quantity">
+					<template 
+						is="zan-quantity" 
+						data="{{ ...item.quantity, componentId: item.id }}" />
+				</view>
+
+			</view>
+			</block>
+
+		</view>
+		<!--billList end-->
+
+		<view class="addBill" bindtap="addBillShop">
+			<image src="../../../images/plus.png"></image>
+		</view>
+		<view class="addBill delBill" bindtap="delBillShop">
+			<image src="../../../images/minus.png"></image>
+		</view>
+
+		<view class="cartOpeat flex">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="delBill">删除清单</button>
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="orderNow">确认下单</button>
+		</view>
+
+	</view>
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+</block>
+
+
+
+

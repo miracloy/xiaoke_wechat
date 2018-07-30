@@ -1,0 +1,10 @@
+<view class="z-picker">
+  <input name="{{name}}" class="z-input {{isUnfold? 'z-input-active': ''}}" placeholder="{{placeholder}}" value="{{index !== ''? list[value] : null}}" bindtap="_unfold"
+    disabled="true">
+  </input>
+  <view class="z-picker-list">
+    <view class="z-picker-item" bindtap="_selete" wx:for="{{list}}" wx:key="item" data-index="{{index}}" hidden="{{!isUnfold}}">
+      {{item}}
+    </view>
+  </view>
+</view>

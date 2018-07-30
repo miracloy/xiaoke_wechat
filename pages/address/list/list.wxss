@@ -1,0 +1,13 @@
+/******update by Ethan,20171025******/
+page{background-color:#f5f5f5}
+.addressList{padding-bottom:110rpx;}
+.addressList .zan-panel{border:none}
+.addressList .zan-cell__bd{color:#666;}
+.addressList .zan-cell::after{right:15px;}
+.addressList .zan-cell.pi{padding-bottom:0;}
+.addressList .zan-cell.pi::after{display:none;content:""}
+.opeat .zan-cell__bd,.opeat .zan-cell__ft{width:50%;overflow:hidden}
+.opeat image{width:40rpx;height:40rpx;margin-right:10rpx;}
+.opeat .write,.opeat .delete{display:inline-block;height:40rpx;line-height:40rpx;overflow:hidden;margin-left:30rpx;}
+.opeat .checked text{color:#fd6363}
+.cartOpeat{position:fixed;width:100%;left:0;bottom:0;border:none;background-color:#fd6363;border-color:#fd6363;z-index:20;}

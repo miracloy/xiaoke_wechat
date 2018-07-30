@@ -1,0 +1,46 @@
+.task{padding-bottom:60rpx}
+.zan-form__title{width:300rpx;color:#666}
+.zan-cell::after{left:0}
+.zan-form__item .zan-form__item{padding:0}
+.taskContent{border:1px solid #e6e6e6;border-radius:10rpx;-webkit-border-radius:10rpx;box-sizing:border-box;-webkit-box-sizing:border-box;padding:20rpx;width:100%;line-height:1.2;height:240rpx;word-wrap:break-word}
+.chooseImg{height:300rpx;width:100%;background-color:#e6e6e6;border:none}
+.chooseImg .add{width:52rpx;height:52rpx;display:block;margin:0 auto;margin-top:100rpx}
+.chooseImg .t{color:#fff}
+.imgList{margin-top:20rpx;padding-top:0;padding-bottom:0;position:relative}
+.imgList .item{width:200rpx;height:200rpx;border-radius:10rpx;-webkit-border-radius:10rpx;-moz-border-radius:10rpx;overflow:hidden;background-color:#f1f1f1;position:relative;margin-right:50rpx;margin-bottom:50rpx}
+.imgList image{width:100%;height:100%}
+.imgList .delImg{position:absolute;right:40rpx;top:10rpx;z-index:2;background-color:rgba(255,255,255,1);border-radius:20rpx;-webkit-border-radius:20rpx}
+.zan-btn{width:100%;display:block;border-color:#fd6363;background-color:#fd6363}
+.opeat{padding-bottom:0}
+.sendBill.opeat{margin-bottom:50rpx}
+.uploadImg{padding-top:0;padding-bottom:0}
+.zan-cell__bd .checkbox{margin-right:30rpx}
+.zan-cell__bd .checkbox:last-of-type{margin-right:0}
+.orderType{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.orderType text{margin-right:10rpx}
+.plr10{padding:0 10rpx}
+.remarks{border-bottom:none;border-top:1px solid #f1f1f1;position:relative;z-index:0 !important}
+.remarks:after{display:none}
+.task .imgList:last-of-type{margin-bottom:50rpx}
+.cartOpeat{position:fixed;left:0;bottom:0;width:100%;z-index:20;}
+.cartOpeat .zan-btn{border-radius:0;background-color:#fd6363;border-color:#fd6363;margin:0}
+
+/*address*/
+.address .zan-cell::after{display:none}
+.address{padding:20rpx 0;margin-bottom:20rpx}
+.address .zan-cell:first-of-type{padding-bottom:0}
+.address .zan-cell:last-of-type{padding-top:10rpx}
+.address .i{width:100%;overflow:hidden}
+
+
+
+
+
+
+
+
+
+
+
+
+

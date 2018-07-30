@@ -1,0 +1,136 @@
+<!--订单列表-->
+<import src="/components/zanui/tab/index.wxml" />
+<import src="/components/zanui/toast/index.wxml" />
+<import src="/components/zanui/loadmore/index.wxml" />
+
+<block wx:if="{{isLoaded}}">
+	<!--container start-->
+	<view class="container order">
+
+		<view class="zan-tab__bd oClass">
+			<view 
+				class="zan-tab__item {{type=='BILL'?'zan-tab__item--selected':''}}"
+				data-id="BILL"
+				bindtap="changeType">
+				<view class="zan-tab__title">清单状态列表</view>
+			</view>
+			<view 
+				class="zan-tab__item {{type=='ORDER'?'zan-tab__item--selected':''}}"
+				data-id="ORDER"
+				bindtap="changeType">
+				<view class="zan-tab__title">订单状态列表</view>
+			</view>
+		</view>
+
+		<view wx:if="{{type=='ORDER'}}">
+			<template 
+				is="zan-tab" 
+				data="{{tab:tab,componentId:'tab',fixed:tabFixed}}">
+			</template>
+		</view>
+
+		<!--billList start-->
+		<block wx:if="{{type=='BILL'}}">
+		<view class="orderList billList">
+			<!-- <view 
+				class="addBill"
+				bindtap="addBill">
+				<image src="../../../images/plus.png"></image>
+			</view> -->
+			<block 
+				wx:for="{{bill}}"
+				wx:key="{{index}}">
+			<view class="zan-panel item" id="{{item.id}}" data-type="{{item.detailType}}" data-pend="{{item.isPend}}" bindtap="billHandle">
+				<block wx:if="{{item.detailType == 'TASK'}}">
+				<image class="taskTip" src="../../../images/renwu.png"></image>
+				</block>
+				<view class="zan-cell">
+					<view class="zan-cell__bd">创建：{{item.psDate}}</view>
+					<block wx:if="{{item.detailType !== 'TASK'}}">
+					<!-- <view class="zan-cell__ft">购买 <text class="pink">{{item.orderNum}}</text> 次</view> -->
+					</block>
+				</view>
+				<view 
+					class="zan-cell zan-cell--access oInfos">
+					<view class="zan-cell__bd">
+						<block wx:if="{{item.remarks!==null}}">
+							<view class="t">任务描述：{{item.remarks}}</view>
+						</block>
+						<view class="m">总金额：￥{{item.total}}</view>
+						<block wx:if="{{item.expirationDate !== null}}">
+						<view class="l pink">
+							距离默认下单还有：
+							<text>{{item.surTimeDay}}</text> 天
+							<text>{{item.surTimeHour}}</text> 小时
+							<text>{{item.surTimeMinute}}</text> 分钟
+						</view>
+						</block>
+					</view>
+					<view class="zan-cell__ft">
+						<block wx:if="{{item.isPend==0}}"><text class="pink">未处理</text></block>
+					</view>
+				</view>
+			</view>
+			</block>
+		</view>
+		</block>
+		<!--billList end-->
+
+		<!--orderList start-->
+		<block wx:if="{{type=='ORDER'}}">
+		<view class="orderList">
+
+			<block 
+				wx:for="{{order}}"
+				wx:key="{{index}}">
+			<view class="zan-panel item" id="{{item.id}}" bindtap="orderHandle">
+				<view class="zan-cell">
+					<view class="zan-cell__bd">订单编号：{{item.orderNumber}}</view>
+					<view class="zan-cell__ft status">{{item.status.friendlyType}}</view>
+				</view>
+				<view 
+					class="zan-cell zan-cell--access oInfos" >
+					<view class="zan-cell__bd">
+						<view class="t">{{item.company.name}}</view>
+						<view class="m">总金额：￥{{item.amount}}</view>	
+					</view>
+					<view class="zan-cell__ft"></view>
+				</view>
+				<view class="zan-cell distri">
+					<view class="zan-cell__bd">配送时间：{{item.psDate}}</view>
+					<view class="zan-cell__ft">
+						
+						<block wx:if="{{item.status.type == 'SHIPPED'}}">
+						<button 
+							class="zan-btn zan-btn--small confirm"
+							catchtap="confirmOrder"
+							data-id="{{item.id}}">
+							确认收货
+						</button>
+						</block>
+						<block wx:if="{{item.status.type == 'SUBMITTED'}}">
+						<button class="zan-btn zan-btn--small cancel" data-id="{{item.id}}" catchtap="cancelOrder">取消订单</button>
+						<button class="zan-btn zan-btn--small pay" data-id="{{item.id}}" catchtap="payNow">立即付款</button>
+						</block>
+						<block wx:if="{{item.status.type == 'FINISHED'}}">
+						<text class="complete pink">订单完成</text>
+						</block>
+
+					</view>
+				</view>
+			</view>
+			</block>
+
+		</view>
+		</block>
+		<!--orderList end-->
+
+		<!--loadmore start-->
+		<template is="zan-loadmore" data="{{loading}}" />
+		<template is="zan-loadmore" data="{{nodata}}" />
+		<!--loadmore end-->
+		
+	</view>
+	<!--container end-->
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

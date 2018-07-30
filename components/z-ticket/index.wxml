@@ -1,0 +1,23 @@
+<view class="ticket" style="width: {{isBtn ? '690rpx' : 'inherit'}};">
+  <view class="ticket-icon">
+    <image style="width:120rpx;height:120rpx" src="{{imgSrc}}"></image>
+  </view>
+  <view class="ticket-text" wx:if="{{kind == 'person'}}">
+    <view class="ticket-text-title {{isPast ? 'ticket-text-title-past' : ''}}">{{params.name || '特价商品优惠券'}}</view>
+    <view class="ticket-text-desc">有效期{{startTime}}-{{endTime}}</view>
+  </view>
+  <view class="ticket-text" wx:if="{{kind == 'rewardMoney'}}">
+      <view class="ticket-text-title {{isPast ? 'ticket-text-title-past' : ''}}">随机现金券</view>
+      <view class="ticket-text-desc">注：随机现金券将在特价商品优惠券使用后发放</view>
+    </view>
+  <view class="ticket-text-company" wx:if="{{kind == 'company' || kind =='history'}}">
+    <view class="ticket-text-title">{{params.productName || params.name}}</view>
+    <view class="ticket-text-desc">¥{{params.productPrice || params.price}}</view>
+  </view>
+  <view class="ticket-btn-container" wx:if="{{isBtn}}">
+    <view class="ticket-btn {{isUsed ? 'ticket-btn-used' : ''}}" bindtap="tapFunc" wx:if="{{kind != 'history'}}">{{ kind != 'company' ? (isUsed ? '已使用' : '立即使用')  : (isUsed ? '已兑换' :'立即兑换') }}</view>
+    <view class="ticket-history-text" wx:if="{{kind == 'history'}}">{{ isUsed ? '未发放' :'已发放' }}</view>
+  </view>
+</view>
+<!-- {{isUsed ? '已使用' : '立即使用' }} -->
+<!--{{ kind != 'company' ? (isUsed ? '已使用' : '立即使用')  : (isUsed ? '已兑换' :'立即兑换') }}-->

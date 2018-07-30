@@ -1,0 +1,24 @@
+<block wx:if="{{isLoaded}}">
+	<view class="container capitalList">
+
+		<view class="zan-panel">
+			<view class="zan-cell tit">
+				<view class="zan-cell__bd">总金额</view>
+				<view class="zan-cell__ft">9000.00</view>
+			</view>
+			<navigator 
+				wx:for="{{capitalList}}"
+				wx:key="{{index}}"
+				class="zan-cell zan-cell--access"
+				url="../list/list?uid={{capitalId}}&cid={{item.id}}">
+				<view class="zan-cell__bd">{{item.date}}</view>
+				<view class="zan-cell__ft">{{item.money}}</view>
+			</navigator>
+		</view>
+
+	</view>
+</block>
+
+
+
+

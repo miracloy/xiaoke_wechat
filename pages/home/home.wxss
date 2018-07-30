@@ -1,0 +1,12 @@
+.zan-tab{height:90rpx;overflow:hidden;}
+.zan-tab__bd{border-bottom:0;display:block;border-bottom:1rpx solid #e5e5e5;height:90rpx;overflow:hidden;}
+.zan-tab__item{text-align:left;height:90rpx;overflow:hidden}
+.zan-tab__title{padding:0 20rpx}
+.hTabs{width:750rpx;overflow-x:auto;overflow-y:hidden;height:90rpx}
+.hTabs .zan-tab__bd{width:100%}
+.hList{padding:25rpx;/*padding-top:115rpx;*/box-sizing:border-box;width:100%;position:relative;z-index:0}
+.hList .item{width:100%;margin-bottom:25rpx}
+.hList .item image{width:100%}
+.hList .txt text{width:100%;display:block}
+.hList .txt .t{color:#606060;line-height:1.5}
+.hList .txt .p{color:#ff625f}

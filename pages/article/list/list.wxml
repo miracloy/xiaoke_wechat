@@ -1,0 +1,20 @@
+<import src="/components/zanui/toast/index.wxml" />
+<import src="/components/zanui/loadmore/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container article">
+
+		<block wx:for="{{artList}}" wx:key="">
+		<view class="item" bindtap="handleArtDetail" id="{{item.id}}">
+			<image class="i" src="{{item.longUrl}}" mode="aspectFill" alt="" />
+			<text class="t">{{item.name}}</text>
+		</view>
+		</block>
+
+		<!--loadmore start-->
+		<template is="zan-loadmore" data="{{loading}}" />
+		<template is="zan-loadmore" data="{{nodata}}" />
+		<!--loadmore end-->
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

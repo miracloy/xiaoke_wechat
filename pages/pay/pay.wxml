@@ -1,0 +1,35 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container pay">
+
+		<view class="tips">请选择支付方式</view>
+		<!--payInfo start-->
+		<view class="payInfo zan-panel">
+			
+			<radio-group class="radio-group">
+			<label class="checkbox" wx:for="{{payList}}" wx:key="" id="{{index}}" bindtap="payChange">
+			<view class="zan-cell">
+				<view class="zan-cell__bd">
+					<view class="i fl">
+						<image class="fl photo" src="{{item.payImg}}"></image>
+						<text class="fl t">{{item.friendlyType}}</text>
+					</view>
+				</view>
+				<view class="zan-cell__ft">
+					<radio name="pays" value="{{item.name}}" checked="{{item.checked}}"/>
+				</view>
+			</view>
+			</label>
+			</radio-group>
+
+		</view>
+		<!--payInfo end-->
+
+		<!--cartOpeat start-->
+		<view class="cartOpeat">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="payHandle">确认支付</button>
+		</view>
+		<!--cartOpeat end-->
+	</view>
+	<template is="zan-toast" data="{{ zanToast }}"></template>
+</block>

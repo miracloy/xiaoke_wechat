@@ -1,0 +1,24 @@
+/******update by Ethan,20171026******/
+.shopingCart{padding-bottom:90rpx;}
+.radio-group{display:inline-block;margin-right:20rpx}
+.analog-radio .zan-icon{font-size:30rpx;}
+.analog-radio .zan-icon-check{color:#999;}
+.analog-radio .zan-icon-checked{color:#fd6363}
+
+/*billList*/
+.billList{border:none}
+.billList .zan-card{position:relative;margin:0 30rpx;padding:20rpx 0 20rpx 60rpx;position:relative}
+.billList .zan-card::after{width:100%;position:absolute;left:60rpx;bottom:0;height:1px;background-color:#f1f1f1;content:" "}
+.billList .zan-card:last-of-type::after{content:"";display:none}
+.billList .zan-card .zan-card__thumb{width:160rpx;height:160rpx;}
+.billList .radio-group{position:absolute;left:0;top:50%;margin-top:-15rpx;}
+.billList .zan-card__detail{margin-left:180rpx;width:480rpx}
+.billList .zan-card__detail .zan-card__detail-row{width:auto}
+.billList .zan-card__detail .zan-card__left-col{margin-right:0rpx}
+.addBill{display:block;height:100rpx;width:100%;background-color:#f6e6e6;position:relative;margin-top:1px;}
+.addBill image{width:60rpx;height:60rpx;position:absolute;left:50%;top:50%;margin:-30rpx 0 0 -30rpx;}
+.goodsnum{position:absolute;right:0;bottom:20rpx}
+.cartOpeat{position:fixed;left:0;bottom:0;width:100%;z-index:20;}
+.cartOpeat .zan-btn{border-radius:0;background-color:#fd6363;border-color:#fd6363;margin:0}
+.cartOpeat .zan-btn:first-of-type{border-right:1px solid #fff;}
+.cartOpeat .zan-btn:last-of-type{border-left:1px solid #fff;}

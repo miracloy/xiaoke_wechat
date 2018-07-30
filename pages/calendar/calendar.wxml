@@ -1,0 +1,152 @@
+<import src="/components/zanui/tab/index.wxml" />
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container home">
+
+		<!--showAppAd start-->
+		<view 
+			class="showAppAd myPop"
+			hidden="{{!adPopOn}}"
+			catchtouchmove="mynotouch">
+			<view class="popMain animated {{adPopOn?'bounceInUp':'bounceOutDown'}}">
+				<view class="m">
+					<icon type="cancel" size="30" color="#ffffff" bindtap="closeAdPop"/>
+					<image bindtap="handleToRemmend" id="{{adImgUrls.id}}" src="{{adImgUrls.wideUrl}}" mode="aspectFill" class="adImage" />
+				</view>
+			</view>
+			<view class="popMask" bindtap="closeAdPop"></view>
+		</view>
+		<!--showAppAd end-->
+
+		<!--calendar start-->
+		<view class="calendar">
+			<view class="chooseDate flex">
+				<view 
+					class="dBtn fl" 
+					data-arrow="prev"
+					bindtap="otherWeek">
+					<image src="../../images/arrow_lr.png"></image>
+				</view>
+				<view class="dInfo flex-1">
+					<text class="tac">{{curYM}}</text>
+					<text class="tac">第{{curWeekNum}}周</text>
+				</view>
+				<view 
+					class="dBtn fr"
+					data-arrow="next"
+					bindtap="otherWeek">
+					<image src="../../images/arrow_rr.png"></image>
+				</view>
+			</view>
+			<!--table start-->
+			<view class="table">
+				<view class="tTop flex">
+					<view class="i item fl">
+						<image src="../../images/calendar.png"></image>
+					</view>
+					<view class="tL fl flex-1">
+						<block wx:for="{{weekDays}}" wx:key="{{index}}">
+						<view class="item fl">
+							<view class="w">{{item}}</view>
+							<view class="d">{{weekDay[index]}}</view>
+						</view>
+						</block>
+					</view>
+				</view>
+				<view class="tMain">
+					<view class="tLine flex">
+						<view class="type fl">
+							<block wx:for="{{order_type}}" wx:key="{{index}}">
+							<view class="item">{{item.NAME}}</view>
+							</block>
+						</view>
+						
+						<view class="tList fl flex-1">
+							<block wx:for="{{homeList}}" wx:key="{{index}}">
+							<view 
+								class="item" 
+								id="{{index}}" 
+								data-bill="{{item.bill.length}}"
+								data-order="{{item.order.length}}"
+								bindtap="showOBInfo">
+								
+								<view class="b">
+									<block wx:if="{{item.bill.length>0}}">
+									{{item.bill.length}}清单
+									</block>
+								</view>
+								
+								<view class="o">
+									<block wx:if="{{item.order.length>0}}">{{item.order.length}}订单
+									</block>
+								</view>
+								
+							</view>
+							</block>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--table end-->
+		</view>
+		<!--calendar end-->
+
+		<!--choseSpec start-->
+		<view 
+			class="showAppoint myPop"
+			hidden="{{!popOn}}"
+			catchtouchmove="mynotouch">
+			<view class="popMain animated {{popOn?'bounceInUp':'bounceOutDown'}}">
+
+				<template 
+					is="zan-tab" 
+					data="{{tab:tab,componentId:'tab'}}">
+				</template>
+
+				<view class="m">
+
+					<scroll-view 
+						hidden="{{tab.selectedId!=='BILL'}}"
+						class="popM bill"
+						scroll-y>
+						<block wx:for="{{openOB.bill}}" wx:key="{{index}}">
+						<view 
+							class="a"
+							id="{{item.id}}"
+							data-type="{{item.detailType}}"
+							bindtap="handleBillDetail">
+							<view class="fl t">{{item.name}}</view>
+							<view class="fl pink p">￥{{item.total}}</view>
+							<image class="fr" src="../../images/erweima.png"></image>
+						</view>
+						</block>
+					</scroll-view>
+
+					<scroll-view 
+						class="popM order"
+						hidden="{{tab.selectedId!=='ORDER'}}"
+						scroll-y>
+						<block wx:for="{{openOB.order}}" wx:key="{{index}}">
+						<view 
+							class="a" 
+							id="{{item.id}}"
+							bindtap="handleOrderDetail">
+							<view class="fl t">{{item.name}}</view>
+							<view class="fl pink p">￥{{item.amount}}</view>
+							<image class="fr" src="../../images/arrow_r.png"></image>
+						</view>
+						</block>
+					</scroll-view>
+
+				</view>
+			</view>
+			<view class="popMask" bindtap="closePop"></view>
+		</view>
+		<!--choseSpec end-->
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>
+
+
+

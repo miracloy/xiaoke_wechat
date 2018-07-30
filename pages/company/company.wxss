@@ -1,0 +1,2 @@
+.zan-cell__ft{width:50%}
+.zan-cell::after{left:0}

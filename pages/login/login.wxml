@@ -1,0 +1,91 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+  <view class="login-container">
+    <!-- <view class="login-banner">
+			<view id="login" class="login-banner-item {{isActive == 'login' ? 'login-banner-item-active' : ''}}" bindtap="tabBanner"> 密码登录 </view>
+			<view class="login-banner-item {{isActive != 'login' ? 'login-banner-item-active' : ''}}" bindtap="tabBanner"> 注册有礼 </view>
+		</view> -->
+    <block wx:if="{{isActive == 'login'}}">
+      <form bindsubmit="login" bindreset="loginReset">
+        <!-- <input type="text" value="{{username}}" name="username" placeholder="账号" bindfocus="focuBtn" bindblur="blurBtn" />
+        <input type="password" value="{{password}}" name="password" placeholder="密码" bindfocus="focuBtn" bindblur="blurBtn" />
+        <button formType="submit" class="login-btn" style="bottom: {{isFocu ? 'auto' : 0 }}">登录</button> -->
+        <view class="input-contain">
+          <view class="input-item">
+            <text class="input-item-text">帐号</text>
+            <input name="username" value="{{invite.username}}" placeholder="请输入帐号" />
+          </view>
+          <view class="input-item">
+            <text class="input-item-text">密码</text>
+            <input name="password" type="password" value="{{invite.password}}" placeholder="请输入密码" bindblur="isFinshed" />
+          </view>
+        </view>
+        <button formType="submit" class="invite-btn {{isFinshed ? 'invite-btn-active' : ''}}">登录</button>
+        <view>
+          <view class="text-contain">
+            <text class="text-item inline-left" bindtap="">游客登录</text>
+            <text class="text-item inline-right" bindtap="tabBanner">{{isActive!=login ? "已有账号？直接登录" : "新用户？请注册"}}</text>
+          </view>
+        </view>
+      </form>
+    </block>
+    <block wx:else>
+      <form class="invite" bindsubmit="register">
+        <view class="input-contain">
+          <view class="input-item">
+            <text class="input-item-text">公司名称</text>
+            <input name="companyName" value="{{invite.companyName}}" placeholder="请输入公司名称" />
+          </view>
+          <view class="input-item">
+            <text class="input-item-text">公司规模</text>
+            <z-pick name="compannyScale" value="{{invite.compannyScale}}" placeholder="请输入公司规模" list="{{list}}" bindchangeValue="changeValue"></z-pick>
+          </view>
+        </view>
+        <!-- <input name="address" value="{{invite.address}}" placeholder="公司地址" /> -->
+        <!-- <input name="name" value="{{invite.name}}" placeholder="联系人" /> -->
+        <view class="input-contain">
+          <view class="input-item">
+            <text class="input-item-text">手机号码</text>
+            <input name="phone" value="{{invite.phone}}" bindblur="setPhone" placeholder="请输入手机号码" />
+            <text class="input-item-text text-phoneValidation" bindtap="getPhoneValidation">发送验证码</text>
+          </view>
+          <view class="input-item">
+            <text class="input-item-text">验证码</text>
+            <input name="phone" value="{{invite.phoneValidation}}" placeholder="请输入验证码" />
+          </view>
+        </view>
+        <view class="input-contain">
+          <view class="input-item">
+            <text class="input-item-text">帐号</text>
+            <input name="username" value="{{invite.username}}" placeholder="请输入帐号" />
+          </view>
+          <view class="input-item">
+            <text class="input-item-text">密码</text>
+            <input name="password" type="password" value="{{invite.password}}" placeholder="请输入密码" bindblur="isFinshed" />
+          </view>
+        </view>
+        <button formType="submit" class="invite-btn {{isFinshed ? 'invite-btn-active' : ''}}">立即注册</button>
+        <view>
+          <view class="text-contain">
+            <text class="text-item inline-left" bindtap="havaInviteCode">我有邀请码</text>
+            <text class="text-item inline-right" bindtap="tabBanner">{{isActive!=login ? "已有账号？直接登录" : "新用户？请注册"}}</text>
+          </view>
+          <view class="input-item" wx:if="{{isInviteCode}}">
+            <text class="input-item-text">邀请码</text>
+            <input name="inviteCode" value="{{invite.inviteCode}}" placeholder="邀请码" />
+          </view>
+        </view>
+      </form>
+    </block>
+  </view>
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+  <view class="toast-login" hidden="{{!isTicker}}">
+    <view class="toast-login-invite">
+      <view class="toast-login-invite-title">{{rewardMoney ? '感谢您受邀注册' :'新人专享好礼' }}</view>
+      <view class="toast-login-invite-title-text" wx:if="{{!rewardMoney}}">可在个人中心查看</view>
+      <z-ticker isBtn="{{false}}"></z-ticker>
+      <z-ticker isBtn="{{false}}" wx:if="{{rewardMoney}}" kind="rewardMoney" imgSrc="./img/ticket-icon-reward.png" style="margin-top: 20rpx"></z-ticker>
+      <view class="toast-login-invite-text" bindtap="closeTicker">立享优惠</view>
+    </view>
+  </view>
+</block>

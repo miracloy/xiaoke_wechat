@@ -1,0 +1,56 @@
+<!-- pages/invite/index/index.wxml -->
+<import src="/components/zanui/toast/index.wxml" />
+<view class="invite">
+  <view class="invite-head">
+    <view class="invite-rules" bindtap="toRule">活动规则</view>
+    <view class="invite-code">
+      <view class="invite-code-text">您的专属邀请码</view>
+      <view class="invite-code-number" bind:longpress="setClipInviteCode">{{inviteCode}}</view>
+    </view>
+    <view class="invite-head-banner">
+      <view class="invite-head-item {{bannerNum==0 ? 'invite-head-item-active' : ''}}" data-num="0" bindtap="tabBanner"> 邀请记录 </view>
+      <view class="invite-head-item {{bannerNum==1 ? 'invite-head-item-active' : ''}}" data-num="1" bindtap="tabBanner"> 个人奖励中心 </view>
+      <view class="invite-head-item {{bannerNum==2 ? 'invite-head-item-active' : ''}}" data-num="2" bindtap="tabBanner"> 公司奖励 </view>
+    </view>
+  </view>
+  <scroll-view style="height: 766rpx;" class="scroll-view" scroll-y="true" enable-back-to-top="true" bindscrolltolower="loadmore">
+    <view class="invite-list">
+      <view class="invite-list-item" hidden="{{bannerNum!=0}}" wx:for="{{list0}}" wx:key="item">
+        <view class="invite-list-item-img">
+          <image style="width:90rpx;height:90rpx;"></image>
+        </view>
+        <view class="invite-list-item-text">
+          <view class="invite-list-item-name">{{item.username}}</view>
+          <view class="invite-list-item-datetime">{{item.group.createdAt}}</view>
+        </view>
+        <view class="invite-list-item-state">{{item.ifUsed}}</view>
+      </view>
+      <view wx:if="{{bannerNum==1}}">
+        <view class="invite-list-text-history invite-list-text" bindtap="toHistory">兑换记录</view>
+        <view class="invite-list-text">累计可兑换现金券{{rewardMoney}}元</view>
+        <view class="invite-list-text-wx" bind:longpress="setClipWx">注：添加小可微信（keke19970804）领取奖品</view>
+        <view wx:for="{{list1}}" wx:key="item">
+          <z-ticker imgSrc="{{item.img}}" params="{{item}}" kind="company" data-id="{{item.id}}" bindtoConvert="toConvert"></z-ticker>
+        </view>
+      </view>
+      <view wx:if="{{bannerNum==2}}">
+        <view class="invite-list-text">已累计特价上商品券：{{list2.length}}张</view>
+        <view wx:for="{{list2}}" wx:key="item">
+          <z-ticker params="{{item}}" isUsed="{{item.ifUsed}}" bindtoUse="toUse"></z-ticker>
+        </view>
+      </view>
+    </view>
+    <view class="invite-toast" hidden="{{toastSuccess & toaskLack}}" bindtap="close">
+      <view class="invite-toast-success" hidden="{{toastSuccess}}">
+        <view class="invite-toast-success-text">兑换成功！添加小可微信领取奖品吧</view>
+        <view class="invite-toast-success-wxnum" bind:longpress="setClipWx">微信号：keke19970804</view>
+      </view>
+      <view class="invite-toast-lack" hidden="{{toaskLack}}">
+        <image style="width:400rpx; height:42rpx;" src="../../../images/icon_lack.png"></image>
+        <view>啊哦～现金券不足</view>
+        <view>带小可一起去邀请HR/行政好友吧</view>
+      </view>
+    </view>
+  </scroll-view>
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+</view>

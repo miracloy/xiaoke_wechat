@@ -1,0 +1,20 @@
+/******update by Ethan,20171025******/
+page{background-color:#f1f1f1}
+.orderList{padding-bottom:100rpx}
+.orderList .zan-cell__ft.status{color:#fd6363}
+.orderList .zan-panel{border:none}
+.orderList .zan-cell__bd{color:#666;}
+.orderList .zan-cell::after{right:15px}
+.orderList .oInfos{padding-top:30rpx;padding-bottom:30rpx;}
+.oInfos .zan-cell__bd{padding-right:40rpx;}
+.oInfos .zan-cell__bd .t{font-size:30rpx;margin-bottom:10rpx;}
+.oInfos .zan-cell__bd .m{font-size:32rpx;}
+.distri .zan-cell__ft{width:50%}
+.orderList .zan-btn{border-color:#fd6363;height:60rpx;line-height:60rpx;color:#fd6363}
+.orderList .zan-btn.cancel{border-color:#999;color:#999}
+.distri .zan-cell__bd{font-size:24rpx}
+.billInfo{margin-top:0;padding-top:40rpx;padding-bottom:40rpx;background-color:#f8e6e6}
+.billInfo .t{color:#999;font-size:28rpx}
+.billInfo .i{font-size:32rpx;margin-top:10rpx}
+.cartOpeat{position:fixed;left:0;bottom:0;width:100%;z-index:20;}
+.cartOpeat .zan-btn{border-radius:0;background-color:#fd6363;border-color:#fd6363;margin:0}

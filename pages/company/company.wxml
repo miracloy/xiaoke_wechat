@@ -1,0 +1,47 @@
+<import src="/components/zanui/toast/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container company">
+
+		<view class="zan-panel">
+			<view class="zan-cell">
+				<view class="zan-cell__bd">公司名称</view>
+				<view class="zan-cell__ft">{{componyInfo.companyName}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">联系人姓名</view>
+				<view class="zan-cell__ft">{{componyInfo.managerName}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">联系人手机号</view>
+				<view class="zan-cell__ft">{{componyInfo.phoneNumber}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">公司座机</view>
+				<view class="zan-cell__ft">{{componyInfo.telePhone}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">公司税号</view>
+				<view class="zan-cell__ft">{{componyInfo.taxNumber}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">公司地址</view>
+				<view class="zan-cell__ft">{{componyInfo.address}}</view>
+			</view>
+			<view class="zan-cell">
+				<view class="zan-cell__bd">登录账号</view>
+				<view class="zan-cell__ft">{{componyInfo.login}}</view>
+			</view>
+			<view class="zan-cell zan-cell--access" hidden="{{true}}">
+				<view class="zan-cell__bd">登录密码</view>
+				<view class="zan-cell__ft">
+					<input 
+						type="password" 
+						disabled="{{true}}"
+						value="{{componyInfo.account}}" />
+				</view>
+			</view>
+		</view>
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

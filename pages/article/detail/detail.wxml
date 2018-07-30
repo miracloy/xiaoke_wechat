@@ -1,0 +1,50 @@
+<import src="/components/zanui/toast/index.wxml" />
+<import src="/components/wxParse/wxParse.wxml"/>
+<block wx:if="{{isLoaded}}">
+	<view class="container artDetail">
+
+		<view class="tit">{{title}}</view>
+		<view class="content">
+			<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+			<!-- <rich-text nodes="{{content}}"></rich-text> -->
+		</view>
+		<view class="recommend">
+			<text class="tips">套餐商品清单：商品和规格均可修改！</text>
+			<block wx:for="{{goods}}" wx:key="">
+				<view class="zan-card">
+
+					<view class="zan-card__thumb">
+						<image class="zan-card__img"
+							src="{{item.skuMedia.primary.url}}"
+							mode="aspectFill"></image>
+					</view>
+	
+					<view class="zan-card__detail">
+						<view class="zan-card__detail-row">
+							<view class="zan-card__left-col zan-ellipsis--l2">
+								{{item.name}}
+							</view>
+							<view class="zan-card__right-col gray">
+								<block wx:for="{{item.productOption}}" wx:key="" wx:for-item="gg">
+									<text>{{gg.attributeValue}} </text>
+								</block>
+							</view>
+							<view class="zan-card__left-col">
+								<text class="fl pink">¥ {{item.amount}}</text>
+							</view>
+						</view>
+					</view>
+	
+				</view>
+				</block>
+		</view>
+
+		<view class="cartOpeat flex">
+			<button class="zan-btn zan-btn--danger flex-1" bindtap="orderNow">
+				立即下单
+			</button>
+		</view>
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>

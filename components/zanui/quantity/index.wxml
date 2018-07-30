@@ -1,0 +1,36 @@
+<template name="zan-quantity">
+  <view class="zan-quantity {{ size === 'small' ? 'zan-quantity--small' : '' }}">
+    <view
+      class="zan-quantity__minus animated {{quantity>0?'slideInRight':'hide'}} {{ quantity <= min ? 'zan-quantity--disabled' : '' }}"
+      data-component-id="{{ componentId }}"
+      data-quantity="{{ quantity }}"
+      data-disabled="{{ quantity <= min }}"
+      bindtap="_handleZanQuantityMinus"
+    >
+    -
+      <!-- <image src="../../../images/minus.png" hidden="{{quantity <= min}}"></image>
+      <image src="../../../images/minus_grey.png" hidden="{{quantity > min}}"></image> -->
+    </view>
+    <input
+      hidden="{{quantity>0}}"
+      class="zan-quantity__text animated {{quantity>0?'slideInRight':'hide'}} {{ min >= max ? 'zan-quantity--disabled' : '' }}"
+      type="number"
+      data-component-id="{{ componentId }}"
+      data-min="{{ min }}"
+      data-max="{{ max }}"
+      value="{{ quantity }}"
+      bindblur="_handleZanQuantityBlur"
+    ></input>
+    <view
+      class="zan-quantity__plus {{ quantity >= max ? 'zan-quantity--disabled' : '' }}"
+      data-component-id="{{ componentId }}"
+      data-quantity="{{ quantity }}"
+      data-disabled="{{ quantity >= max }}"
+      bindtap="_handleZanQuantityPlus"
+    >
+    +
+      <!-- <image src="../../../images/plus.png" hidden="{{quantity >= max}}"></image>
+      <image src="../../../images/plus_grey.png" hidden="{{quantity < max}}"></image> -->
+    </view>
+  </view>
+</template>

@@ -1,0 +1,52 @@
+<import src="/components/zanui/tab/index.wxml" />
+<import src="/components/zanui/toast/index.wxml" />
+<import src="/components/zanui/loadmore/index.wxml" />
+<block wx:if="{{isLoaded}}">
+	<view class="container home">
+
+		<!--tab start-->
+		<!-- <scroll-view 
+			scroll-x 
+			bindscrolltoupper="upper" 
+			bindscrolltolower="lower" 
+			bindscroll="scroll">
+			<view class="hTabs">
+				<template 
+					is="zan-tab" 
+					data="{{tab:tabs,componentId:'tabs',fixed:tabFixed}}">
+				</template>
+			</view>
+		</scroll-view> -->
+		<view class="hTabs">
+			<template 
+				is="zan-tab" 
+				data="{{tab:tabs,componentId:'tabs',fixed:tabFixed}}">
+			</template>
+		</view>
+		<!--tab end-->
+		
+		<!--hList start-->
+		<view class="hList">
+			<block wx:for="{{hlist}}" wx:key="">
+			<view class="item" bindtap="handleArtDetail" id="{{item.id}}">
+				<image class="i" src="{{item.longUrl}}" mode="aspectFill" alt="" />
+				<view class="txt tac">
+					<text class="t">{{item.name}}</text>
+					<!-- <text class="p">￥ 25</text> -->
+				</view>
+			</view>
+			</block>
+		</view>
+		<!--hList end-->
+
+		<!--loadmore start-->
+		<template is="zan-loadmore" data="{{loading}}" />
+		<template is="zan-loadmore" data="{{nodata}}" />
+		<!--loadmore end-->
+
+	</view>
+</block>
+<template is="zan-toast" data="{{ zanToast }}"></template>
+
+
+

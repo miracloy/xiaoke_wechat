@@ -1,0 +1,12 @@
+@import "/components/wxParse/wxParse.wxss";
+.artDetail{padding-bottom:90rpx}
+.artDetail .tit{background-color:#fd6363;padding:20rpx 25rpx;color:#fff}
+.artDetail .content{padding:25rpx;background-color:#f9f9f9}
+.artDetail .recommend .tips{color:#fd6363;font-size:28rpx;padding:25rpx;margin-top:50rpx;display:block}
+.artDetail .zan-panel{border:none;border-bottom:2rpx solid #f0f0f0}
+.artDetail .zan-cell__bd{color:#666}
+.zan-card__thumb{height:140rpx;width:140rpx}
+.zan-card__detail{margin-left:160rpx}
+.zan-card{border-bottom:2rpx solid #f0f0f0;margin:0 25rpx;padding:20rpx 0}
+.artDetail .zan-cell::after{right:15px}
+.cartOpeat button{position:fixed;width:100%;left:0;bottom:0;background-color:#fd6363;border-color:#fd6363;z-index:20;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0}
