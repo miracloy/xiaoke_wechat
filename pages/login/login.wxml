@@ -13,17 +13,15 @@
         <view class="input-contain">
           <view class="input-item">
             <text class="input-item-text">帐号</text>
-            <input name="username" value="{{invite.username}}" placeholder="请输入帐号" />
-          </view>
+            <input name="username" value="{{invite.username}}" placeholder="请输入帐号" /> </view>
           <view class="input-item">
             <text class="input-item-text">密码</text>
-            <input name="password" type="password" value="{{invite.password}}" placeholder="请输入密码" bindblur="isFinshed" />
-          </view>
+            <input name="password" type="password" value="{{invite.password}}" placeholder="请输入密码" bindblur="isFinshed" /> </view>
         </view>
         <button formType="submit" class="invite-btn {{isFinshed ? 'invite-btn-active' : ''}}">登录</button>
         <view>
           <view class="text-contain">
-            <text class="text-item inline-left" bindtap="">游客登录</text>
+            <text class="text-item inline-left" bindtap="vhandleLogin">游客登录</text>
             <text class="text-item inline-right" bindtap="tabBanner">{{isActive!=login ? "已有账号？直接登录" : "新用户？请注册"}}</text>
           </view>
         </view>
@@ -34,8 +32,7 @@
         <view class="input-contain">
           <view class="input-item">
             <text class="input-item-text">公司名称</text>
-            <input name="companyName" value="{{invite.companyName}}" placeholder="请输入公司名称" />
-          </view>
+            <input name="companyName" value="{{invite.companyName}}" placeholder="请输入公司名称" /> </view>
           <view class="input-item">
             <text class="input-item-text">公司规模</text>
             <z-pick name="compannyScale" value="{{invite.compannyScale}}" placeholder="请输入公司规模" list="{{list}}" bindchangeValue="changeValue"></z-pick>
@@ -47,22 +44,19 @@
           <view class="input-item">
             <text class="input-item-text">手机号码</text>
             <input name="phone" value="{{invite.phone}}" bindblur="setPhone" placeholder="请输入手机号码" />
-            <text class="input-item-text text-phoneValidation" bindtap="getPhoneValidation">发送验证码</text>
+            <text class="input-item-text text-phoneValidation" style="{{time > 0 ? 'color: #999;' : ''}}" bindtap="getPhoneValidation">{{ time === 0 ? '发送验证码' : time + 'S后重新发送' }}</text>
           </view>
           <view class="input-item">
             <text class="input-item-text">验证码</text>
-            <input name="phone" value="{{invite.phoneValidation}}" placeholder="请输入验证码" />
-          </view>
+            <input name="phone" value="{{invite.phoneValidation}}" placeholder="请输入验证码" /> </view>
         </view>
         <view class="input-contain">
           <view class="input-item">
             <text class="input-item-text">帐号</text>
-            <input name="username" value="{{invite.username}}" placeholder="请输入帐号" />
-          </view>
+            <input name="username" value="{{invite.username}}" placeholder="请输入帐号" /> </view>
           <view class="input-item">
             <text class="input-item-text">密码</text>
-            <input name="password" type="password" value="{{invite.password}}" placeholder="请输入密码" bindblur="isFinshed" />
-          </view>
+            <input name="password" type="password" value="{{invite.password}}" placeholder="请输入密码" bindblur="isFinshed" /> </view>
         </view>
         <button formType="submit" class="invite-btn {{isFinshed ? 'invite-btn-active' : ''}}">立即注册</button>
         <view>
@@ -72,8 +66,7 @@
           </view>
           <view class="input-item" wx:if="{{isInviteCode}}">
             <text class="input-item-text">邀请码</text>
-            <input name="inviteCode" value="{{invite.inviteCode}}" placeholder="邀请码" />
-          </view>
+            <input name="inviteCode" value="{{invite.inviteCode}}" placeholder="邀请码" /> </view>
         </view>
       </form>
     </block>

@@ -26,6 +26,8 @@ let api = {
   goods: '/category/products',
   // 商品搜索结果
   searchGoods: '/product/search',
+  // 商品详情
+  goodsDetail: '/product/',
   // sku
   sku: '/product/sku',
   // 二维码code
@@ -81,12 +83,11 @@ let api = {
   // 获取当前用户的个人奖励金
   getRewardMoney: '/welfare/getRewardMoney',
   // 手机验证码
-  getPhoneValidation: '/wx/phoneValid',
+  getPhoneValidation: '/wx/phoneValid'
 }
 
 // let devDomain = 'https://api.jinguashop.com/site';
 // let devDomain = 'https://www.jinguashop.com/site';
-
 
 let devDomain = 'https://www.jinguashop.com/site'
 let mockDomain = 'https://result.eolinker.com/YuqxsSC007bd764f945995d4b6a3ee1161b20e0d7ffe7e4?uri='
@@ -103,4 +104,4 @@ for (var attr in api) {
   }
 }
 
-export default api;
+export default api
