@@ -194,7 +194,6 @@ input {
   background-color: #ccc;
   text-align: center;
   line-height: 90rpx;
-  margin: 50rpx 80rpx;
 }
 
 .invite-btn-active {

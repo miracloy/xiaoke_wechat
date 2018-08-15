@@ -93,6 +93,7 @@ let devDomain = 'https://www.jinguashop.com/site'
 let mockDomain = 'https://result.eolinker.com/YuqxsSC007bd764f945995d4b6a3ee1161b20e0d7ffe7e4?uri='
 let proDomain = 'https://api.jinguashop.com/site'
 let environment = 'dev'
+//let environment = 'pro'
 
 for (var attr in api) {
   if (environment == 'dev') {

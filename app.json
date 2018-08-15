@@ -46,7 +46,7 @@
 		"list": [
 			{
 				"pagePath": "pages/home/home",
-				"text": "首页推荐",
+				"text": "首页",
 				"iconPath": "images/home.png",
 				"selectedIconPath": "images/home_cur.png"
 			},{
@@ -60,13 +60,8 @@
 				"iconPath": "images/task.png",
 				"selectedIconPath": "images/task_cur.png"
 			},{
-				"pagePath": "pages/order/list/list",
-				"text": "清单/订单",
-				"iconPath": "images/order.png",
-				"selectedIconPath": "images/order_cur.png"
-			},{
 				"pagePath": "pages/member/member",
-				"text": "个人中心",
+				"text": "我的",
 				"iconPath": "images/member.png",
 				"selectedIconPath": "images/member_cur.png"
 			}

@@ -75,6 +75,7 @@ Page(Object.assign({}, Zan.Toast, {
 					break;
 				}
 			};
+      wx.navigateTo({ url: '../../pages/order/list/list' });
 		});
 	},
 	payProcess (type){							//支付流程

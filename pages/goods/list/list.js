@@ -123,7 +123,7 @@ Page(
         .request({
           url: api.goods + '/' + active.id,
           data: {
-            page: active.page,
+            page: 0,
             size: SIZE,
             sort
           }
@@ -137,13 +137,20 @@ Page(
             res.data[j].cid = active.id
           }
           if (res.errorCode == 200) {
+            /*
             for (var i in category) {
               if (category.id == active.id) {
                 category.page = category.page + 1
               }
             }
+            */
+            for (var i in category) {
+              if (category[i].id == active.id) {
+                category[i].page ++
+              }
+            }
             this.setData({
-              category
+              category,
             })
 
             //设置每个商品的点击加减
@@ -276,6 +283,7 @@ Page(
         active = {}
       let { category } = this.data
       for (var i in category) {
+        category[i].page = 0
         if (category[i].id == cid) {
           active = category[i]
         }
@@ -687,8 +695,7 @@ Page(
         })
     },
     closeDeatail(e) {
-      console.log(e)
-      e.currentTarget.id ? '' : this.setData({ isDatail: false })
+      e.currentTarget.id ? '' : this.setData({ isDatail: false, detail:[]})
     },
     // 设置排序
     handleSort() {
@@ -696,7 +703,7 @@ Page(
       this.setData({ isSort: !isSort })
     },
     confirmSort(e) {
-      const { sort } = e.target.dataset
+      const { sort } = e.currentTarget.dataset
       this.setData({ sort, isSort: false })
       this.getGoods()
     },

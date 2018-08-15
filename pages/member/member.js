@@ -33,6 +33,29 @@ Page(Object.assign({}, Zan.Toast, {
 		//保存formId
 		app.formIdsSave();
 	},
+  onShow (){
+    var _this = this;
+    //获取用户信息
+    this.getUserInfo();
+    //获取用户的头像
+    if (app.globalData.userInfo) {
+      this.setData({
+        photo: app.globalData.userInfo.avatarUrl
+      });
+    } else {
+      wx.getUserInfo({
+        success: function (res) {
+          app.globalData.userInfo = res.userInfo;
+          _this.setData({
+            photo: res.userInfo.avatarUrl,
+          });
+        }
+      });
+    }
+
+    //保存formId
+    app.formIdsSave();
+  },
 	getUserInfo () {   //获取用户信息
 		var _this = this;
 		http.request({
@@ -77,7 +100,7 @@ Page(Object.assign({}, Zan.Toast, {
 	ddHandle () {				//事件跳转到我的订单页面
 		app.globalData.obType = 'ORDER';
 		app.handle(function () {
-			wx.switchTab({ url: '../../pages/order/list/list' });
+      wx.navigateTo({ url: '../../pages/order/list/list' });
 		});
 	},
 	tcHandle () {				//退出直接跳转到登录界面，让用户重新登录

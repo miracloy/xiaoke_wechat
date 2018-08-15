@@ -44,11 +44,11 @@
           <view class="input-item">
             <text class="input-item-text">手机号码</text>
             <input name="phone" value="{{invite.phone}}" bindblur="setPhone" placeholder="请输入手机号码" />
-            <text class="input-item-text text-phoneValidation" style="{{time > 0 ? 'color: #999;' : ''}}" bindtap="getPhoneValidation">{{ time === 0 ? '发送验证码' : time + 'S后重新发送' }}</text>
+            <text class="input-item-text text-phoneValidation" style="{{time > 0 ? 'color: #999;' : ''}}" bindtap="getPhoneValidation">{{ time == 0 ? '发送验证码' : time + 'S后重新发送' }}</text>
           </view>
           <view class="input-item">
             <text class="input-item-text">验证码</text>
-            <input name="phone" value="{{invite.phoneValidation}}" placeholder="请输入验证码" /> </view>
+            <input name="phoneValidation" value="{{invite.phoneValidation}}" placeholder="请输入验证码" /> </view>
         </view>
         <view class="input-contain">
           <view class="input-item">

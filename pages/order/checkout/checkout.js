@@ -400,11 +400,14 @@ Page(Object.assign({}, Zan.Toast, {
 		});
 	},
 	settlement () {					//结算操作
-		let { order, orderId, MODE } = this.data;
+		let { order, orderId, MODE,adress } = this.data;
 		var _this = this,
 			obj = this.checkData();
 		//检查相关数据是否OK
 		try {
+      if (!obj.addressId){
+        throw new Error('请选择配送地址！');
+      }
 			//检测配送时间
 			if (obj.startTs.length <= 0 && obj.endTs.length <= 0) {
 				throw new Error('请选择正确的配送时间！');
@@ -449,7 +452,12 @@ Page(Object.assign({}, Zan.Toast, {
 	checkData () {
 		//检查数据之前先组合数据
 		let { order, startTs, endTs, choosedType, chooseAllDate, address } = this.data;
-		var addressId = app.globalData.activeAddress ? app.globalData.activeAddress.id : address.id
+    var addressId;
+    if (!app.globalData.activeAddress  && !address){
+      addressId == ""
+    }else{
+      addressId = app.globalData.activeAddress ? app.globalData.activeAddress.id : address.id
+    }
 		var sendObj = {
 			startTs,
 			endTs,

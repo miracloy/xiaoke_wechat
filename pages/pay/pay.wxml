@@ -8,7 +8,7 @@
 			
 			<radio-group class="radio-group">
 			<label class="checkbox" wx:for="{{payList}}" wx:key="" id="{{index}}" bindtap="payChange">
-			<view class="zan-cell">
+			<view class="zan-cell" wx:if="{{item.friendlyType!='微信支付'}}">
 				<view class="zan-cell__bd">
 					<view class="i fl">
 						<image class="fl photo" src="{{item.payImg}}"></image>

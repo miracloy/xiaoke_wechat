@@ -5,14 +5,17 @@
 <block wx:if="{{isLoaded}}">
 	<!--search start-->
 	<view class="search">
-		<view class="zan-cell zan-form__item flex">
-			<view class="searchImg" hidden="{{!showSearch}}" bindtap="closeSearch">
+    <view class="letterView" hidden="{{showSearch}}">
+      <image class="letterImg" src="../../../images/letter.png"     alt=""></image>
+    </view> 
+    <view class="searchLr" hidden="{{!showSearch}}" bindtap="closeSearch">
 				<image class="arrow" src="../../../images/arrow_lr.png" alt=""></image>
-			</view>
-			<input class="zan-form__input zan-cell__bd flex-1" type="text" value="{{searchTxt}}" bindinput="searchInput" placeholder="请输入商品关键字" />
-			<view class="searchImg" bindtap="searchGoods">
-				<image src="../../../images/icon_search.png" alt=""></image>
-			</view>
+			</view>    
+		<view class="zan-cell {{showSearch ? 'zan-cell-plus':''}}">  
+      <view class="searchView {{showSearch ? 'searchView-left':''}}">
+				<image class="searchImg" bindtap="searchGoods" src="../../../images/icon_search.png" alt=""></image>
+      </view>
+			<input class="zan-form__input zan-cell__bd" type="text" value="{{searchTxt}}" bindinput="searchInput" placeholder="搜索" />
 		</view>
 	</view>
 	<!--search end-->
@@ -71,7 +74,7 @@
 		<!--goodsList start-->
 		<view class="goodsList flex" hidden="{{showSearch}}">
 			<!--category start-->
-			<scroll-view class="category fl" scroll-y style="height:{{mWH.height}}px">
+			<scroll-view class="category fl" scroll-y style="height:{{mWH.height+20}}px">
 				<block wx:for="{{category}}" wx:key="">
 					<view class="item {{item.id == active.id?'active':''}}" id="{{item.id}}" bindtap="choseCate">
 						<view class="category-item__text">{{item.name}}</view>
@@ -79,50 +82,72 @@
 				</block>
 			</scroll-view>
 			<!--category end-->
-			<!--goods start-->
-			<scroll-view class="goods fr flex-1" scroll-y bindscrolltolower="getMoreGoods" style="height:{{mWH.height}}px">
-				<view class="gItem active">
-					<view class="gTit">{{active.name}}</view> {{goods[index].cid}}
-					<block wx:for="{{goods}}" wx:key="">
-						<view class="zan-panel item" hidden="{{item.cid !== active.id}}">
-							<view class="zan-card" data-id="{{item.id}}" bindtap="goodsDetail">
-								<view class="zan-card__thumb">
-									<image class="zan-card__img" src="{{item.skuMedia.primary.url}}" mode="aspectFit"></image>
-								</view>
-								<view class="zan-card__detail">
-									<view class="zan-card__detail-row">
-										<view class="zan-card__left-col zan-ellipsis--l2"> {{item.name}} </view>
-									</view>
-									<view class="zan-card__detail-row zan-c-gray-darker">
-										<view class="zan-card__left-col zan-c-red">￥ {{item.minPrice}}</view>
-									</view>
-									<block wx:if="{{item.skus.length>1}}">
-										<view class="cSpec">
-											<button class="zan-btn zan-btn--danger" id="{{item.id}}" catchtap="openChoseSpec">
-												<text>规格</text>
-												<view class="zan-badge__count" hidden="{{item.quantity.quantity<=0}}">{{item.quantity.quantity}}</view>
-											</button>
-											<!-- <view class="spec" id="{{item.id}}" bindtap="openChoseSpec" hidden="{{item.quantity.quantity>0}}"></view>
-									<view class="quantity">
-										<template 
-											is="zan-quantity" 
-											data="{{ ...item.quantity, componentId: item.id }}" />
-									</view> --></view>
-									</block>
-									<block wx:else>
-										<view class="quantity">
-											<template is="zan-quantity" data="{{ ...item.skus[0].quantity, componentId: item.skus[0].id }}" /> </view>
-									</block>
-								</view>
-							</view>
-						</view>
-					</block>
-				</view>
-				<!--loadmore start-->
-				<template is="zan-loadmore" data="{{loading}}" />
-				<template is="zan-loadmore" data="{{nodata}}" />
-				<!--loadmore end-->
-			</scroll-view>
+      <view class="goods-right">  
+        <!-- 商品排序页 -->
+        <view class="goods-sort flex">
+          <view class="goods-sort-comprehensive flex" bindtap="confirmSort" data-sort="0">
+            <view class="goods-sort__item">综合排序</view>
+            <image class="img-comprehensive" src='../../../images/sort_comprehensive.png'></image>
+          </view>
+          <view class="goods-sort-up flex" bindtap="confirmSort" data-sort="1">
+            <view class="goods-sort__item" >排序向上</view>
+            <image class="img-up" src='../../../images/sort_up.png'></image>
+          </view>
+          <view class="goods-sort-down flex" bindtap="confirmSort" data-sort="2">
+            <view class="goods-sort__item">排序向下</view>
+            <image class="img-down" src='../../../images/sort_down.png'></image>
+          </view>
+
+          <!--<view hidden="{{!isSort}}">
+            <view class="goods-sort__item {{item.id === sort ? 'goods-sort__item--selete' : ''}}" wx:for="{{sortList}}" wx:key="{{index}}" data-sort="{{item.id}}" bindtap="confirmSort">{{item.name}}
+            </view>
+          </view>-->
+        </view>
+        <!--goods start-->
+        <scroll-view class="goods fr flex-1" scroll-y bindscrolltolower="getMoreGoods" style="height:{{mWH.height}}px">
+          <view class="gItem active">
+            <block wx:for="{{goods}}" wx:key="">
+              <view class="zan-panel item" hidden="{{item.cid !== active.id}}">
+                <view class="zan-card">
+                  <view class="zan-card__thumb">
+                    <image class="zan-card__img" src="{{item.skuMedia.primary.url}}" mode="aspectFit" bindtap="goodsDetail" data-id="{{item.id}}"></image>
+                  </view>
+                  <view class="zan-card__detail">
+                    <view class="zan-card__detail-row">
+                      <view class="zan-card__left-col zan-ellipsis--l2"> {{item.name}} </view>
+                    </view>
+                    <view class="zan-card__detail-row-money">
+                      <view class="zan-card__left-col">￥{{item.minPrice}}</view>
+                    </view>
+                    <block wx:if="{{item.skus.length>1}}">
+                      <view class="cSpec">
+                        <button class="zan-btn zan-btn--danger" id="{{item.id}}" catchtap="openChoseSpec">
+                          <text>规格</text>
+                          <view class="zan-badge__count" hidden="{{item.quantity.quantity<=0}}">{{item.quantity.quantity}}</view>
+                        </button>
+                        <!-- <view class="spec" id="{{item.id}}" bindtap="openChoseSpec" hidden="{{item.quantity.quantity>0}}"></view>
+                    <view class="quantity">
+                      <template 
+                        is="zan-quantity" 
+                        data="{{ ...item.quantity, componentId: item.id }}" />
+                    </view> --></view>
+                    </block>
+                    <block wx:else>
+                      <view class="quantity">
+                        <template is="zan-quantity" data="{{ ...item.skus[0].quantity, componentId: item.skus[0].id }}" /> </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+          <!--loadmore start-->
+          <template is="zan-loadmore" data="{{loading}}" />
+          <template is="zan-loadmore" data="{{nodata}}" />
+          <!--loadmore end-->
+        </scroll-view>
+      </view>
+      </view>
 			<!--goods end-->
 		</view>
 		<!--goodsList end-->
@@ -131,7 +156,7 @@
 			<view class="cartInfo fl flex-1">
 				<view bindtap="toggleDialog" class="i">
 					<image class="img" src="../../../images/shoppingCart.png"></image>
-					<text class="t">￥ {{totalPrice}}</text>
+					<text class="t">￥{{totalPrice}}</text>
 				</view>
 			</view>
 			<button class="zan-btn zan-btn--danger" bindtap="orderNow">立即下单</button>
@@ -170,7 +195,7 @@
 		</view>
 		<!--choseSpec end-->
 		<!--shopCart start-->
-		<view class="shopCart zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+		<view class="shopCart zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}" hidden='{{!showDialog}}'>
 			<view class="zan-dialog__mask" bindtap="toggleDialog" />
 			<view class="zan-dialog__container">
 				<view class="clearShop tar" bindtap="clearShopCart">
@@ -188,14 +213,6 @@
 			</view>
 		</view>
 		<!--shopCart end-->
-		<!-- 商品排序页 -->
-		<view class="goods-sort">
-			<view class="goods-sort__item" bindtap="handleSort">{{sortList[sort].name}}</view>
-			<view hidden="{{!isSort}}">
-				<view class="goods-sort__item {{item.id === sort ? 'goods-sort__item--selete' : ''}}" wx:for="{{sortList}}" wx:key="{{index}}" data-sort="{{item.id}}" bindtap="confirmSort">{{item.name}}</view>
-			</view>
-		</view>
-	</view>
 	<!-- 商品详情弹窗 -->
 	<view class="goods-detail--overlay" wx:if="{{isDatail}}" bindtap="closeDeatail">
 		<view class="goods-detail" id="detail" catchtap="closeDeatail">

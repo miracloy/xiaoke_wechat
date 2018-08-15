@@ -163,34 +163,40 @@ Page(
       let value = e.detail.value
       let compannyScale = this.data.invite.compannyScale
       let self = this
-      let code = this.data.code
-      Object.assign(value, { compannyScale, code })
-      wx.request({
-        url: api.register,
-        data: value,
-        header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        method: 'POST',
-        success(e) {
-          try {
-            if (e.data.errorCode == 200) {
-              // 注册成功获取优惠券
-              let tickerDate = { createdAt: e.data.data.ticketStartDate, expirationDate: e.data.data.ticketExpirationDate }
-              let rewardMoney = e.data.data.rewardMoney
-              self.setData({ isTicker: true, rewardMoney, tickerDate, invite: value })
-              // throw new Error('注册成功，恭喜您获得优惠券')
-            } else if (e.data.errorCode == -1) {
-              throw new Error('帐号重复')
-            } else {
-              throw new Error(e.data.moreInfo)
+      wx.login({
+        success: res => {
+          let code = res.code;
+          console.log(code)
+          Object.assign(value, { compannyScale, code })
+          wx.request({
+            url: api.register,
+            data: value,
+            header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            method: 'POST',
+            success(e) {
+              try {
+                if (e.data.errorCode == 200) {
+                  // 注册成功获取优惠券
+                  let tickerDate = { createdAt: e.data.data.ticketStartDate, expirationDate: e.data.data.ticketExpirationDate }
+                  let rewardMoney = e.data.data.rewardMoney
+                  self.setData({ isTicker: true, rewardMoney, tickerDate, invite: value })
+                  // throw new Error('注册成功，恭喜您获得优惠券')
+                } else if (e.data.errorCode == -1) {
+                  throw new Error('帐号重复')
+                } else {
+                  throw new Error(e.data.moreInfo)
+                }
+              } catch (e) {
+                return self.showZanToast(e.message)
+              }
+            },
+            fail(e) {
+              console.info(e)
             }
-          } catch (e) {
-            return self.showZanToast(e.message)
-          }
-        },
-        fail(e) {
-          console.info(e)
+          })
         }
       })
+      
       // wx.login({
       //   success(res) {
       //     code = { code: res.code }
@@ -246,15 +252,10 @@ Page(
       }
 
       let phone = this.data.invite.phone
-      try {
-        if (!/^1[0-9]{10}$/.test(phone)) {
-          throw new Error('请输入正确的手机号')
-        }
-      } catch (e) {
-        return this.showZanToast(e.message)
-      }
       wx.login({
         success: res => {
+          var code = res.code;
+          console.log("真正的"+code)
           wx.request({
             url: api.getPhoneValidation,
             method: 'POST',
@@ -262,7 +263,8 @@ Page(
             data: { code: res.code, phone },
             success: res => {
               // 顺便把code给set
-              this.setData({ code: res.code })
+              this.setData({ code: code})
+              settime(this)
             },
             complete: res => {
               this.showZanToast(res.data.moreInfo)
@@ -289,3 +291,22 @@ Page(
     }
   })
 )
+var countdown = 60;
+var settime = function (that) {
+  if (countdown == 0) {
+    that.setData({
+      time: countdown
+    })
+    countdown = 60;
+    return;
+  } else {
+    that.setData({
+      time: countdown,
+    })
+    countdown--;
+  }
+  setTimeout(function () {
+    settime(that)
+  }
+    , 1000)
+}
