@@ -193,7 +193,7 @@ page {
   bottom: 0;
   width: 100%;
   height: 100rpx;
-
+  
 
   box-shadow: 0px 0px 5px rgba(0, 0, 0, .2);
   z-index: 88;
@@ -212,26 +212,80 @@ page {
 }
 
 .cartInfo .i {
-  display: block;
+  height: 100rpx;
   padding: 0 20rpx;
-  opacity:0.8;
+  opacity:0.9;
   color: white;
   background-color: #333;
   z-index: 99;
 }
 
-.cartInfo .i .img {
-  width: 90rpx;
+.cartInfo .cart-icon{
+  position: fixed;
+  display: flex;
+  height: 110rpx;
+  width: 110rpx;
+  border-radius: 50%;
+  -moz-border-radius:50%;
+  -web-border-radius:50%;
+  background-color: #424040;
+  margin-top: -36rpx;
+  margin-left: 49rpx;
+  z-index: 100;
+}
+
+.cart-icon .cart-icon-little{
   height: 90rpx;
-  position: absolute;
-  top: -18rpx;
-  left: 20rpx
+  width: 90rpx;
+  border-radius: 50%;
+  -moz-border-radius:50%;
+  -web-border-radius:50%;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  background-color: #FD6363;
+  z-index: 101;
+}
+
+.cart-icon .cart-icon-count{
+  position: fixed;
+  padding: 4rpx;
+  display: table;
+  height: 30rpx;
+  width: 30rpx;
+  margin-left: 70rpx;
+  border-radius: 50%;
+  -moz-border-radius:50%;
+  -web-border-radius:50%;
+  background-color: white;
+  z-index: 102;
+}
+
+.cart-icon-count .cart-icon-count-little{
+  display: table-cell;
+  height: 25rpx;
+  width: 25rpx;
+  margin-top: 3rpx;
+  margin-left: 3rpx;
+  border-radius: 50%;
+  -moz-border-radius:50%;
+  -web-border-radius:50%;
+  background-color: #3F7EFB;
+  font-size: 22rpx;
+  color: white;
+  text-align:center;
+  vertical-align: middle;
+}
+
+.cart-icon-little .img{
+  width: 50rpx;
+  height: 41rpx;
+  margin-top: 24rpx;
+  margin-left: 16rpx;
 }
 
 .cartInfo .i .t {
-  margin-left: 100rpx;
   line-height: 100rpx;
-  font-size: 32rpx
+  margin-left: 155rpx;
 }
 
 /*choseSpec*/
@@ -321,7 +375,7 @@ page {
 .shopCart .clearShop {
   height: 30rpx;
   line-height: 30rpx;
-  background-color: #f1f1f1;
+  background-color: #EEEFF5;
   font-size: 24rpx;
   padding: 12rpx 20rpx
 }
@@ -336,8 +390,8 @@ page {
 
 .shopCart .shopList {
   max-height: 400rpx;
-  background-color: #fff;
-  padding: 0 20rpx;
+  background-color: #F5F6FD;
+  padding: 0 30rpx;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box
@@ -345,22 +399,41 @@ page {
 
 .shopCart .item {
   overflow: hidden;
-  height: 40rpx;
-  line-height: 40rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   border-bottom: 1px solid #f1f1f1;
   font-size: 28rpx;
-  padding: 40rpx 0
 }
 
 .shopCart .item .t {
-  width: 60%;
+  width: 40%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
 }
 
 .shopCart .item .m {
-  width: 20%
+  margin-left: 150rpx;
+  width: 10%
+}
+
+.input-quantity{
+  margin-top: 25rpx;
+  margin-left: 50rpx;
+  border-style: dashed;
+  background-color: #FCFCFC;
+  height: 50rpx;
+  width: 100rpx;
+  text-align:center;
+  border-color: #cccccc;
+  border-width:1rpx;
+}
+
+.del_this{
+  height: 25rpx;
+  width: 25rpx;
+  margin-left: 30rpx;
+  margin-top: 40rpx;
 }
 
 /*search*/

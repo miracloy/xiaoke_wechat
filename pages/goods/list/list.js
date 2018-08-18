@@ -365,6 +365,9 @@ Page(
       })
       this.countTotal()
     },
+    delThis(e) {
+      console.log(e.currentTarget.dataset.id);
+    },
     countTotal() {
       //计算购物车总价
       let { shopcart } = this.data

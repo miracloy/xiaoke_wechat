@@ -154,10 +154,19 @@
 		<!--setOrder start-->
 		<view class="setOrder flex">
 			<view class="cartInfo fl flex-1">
-				<view bindtap="toggleDialog" class="i">
-					<image class="img" src="../../../images/shoppingCart.png"></image>
-					<text class="t">￥{{totalPrice}}</text>
-				</view>
+        <view bindtap="toggleDialog">
+          <view class="cart-icon">
+            <view class="cart-icon-little">
+              <image class="img" src="../../../images/shoppingCart.png"></image>
+            </view>
+            <view class="cart-icon-count">
+              <view class="cart-icon-count-little">12</view>
+            </view>
+          </view>
+          <view class="i">
+            <text class="t">￥{{totalPrice}}</text>
+          </view>
+        </view>
 			</view>
 			<button class="zan-btn zan-btn--danger" bindtap="orderNow">立即下单</button>
 		</view>
@@ -205,7 +214,9 @@
 						<view class="item flex">
 							<view class="t fl">{{item.skus.longName}}</view>
 							<view class="m fl">￥{{item.skus.amount}}</view>
-							<view class="quantity fl flex-1">
+              <input type='text' class="input-quantity" value='22'></input>
+              <image class="del_this" data-id='{{item.skus.id}}' bindtap="delThis" src="../../../images/shopcart_del.png"></image>
+							<view class="quantity fl flex-1" hidden='true'>
 								<template is="zan-quantity" data="{{ ...item.skus.quantity, componentId: item.skus.id }}" /> </view>
 						</view>
 					</block>
