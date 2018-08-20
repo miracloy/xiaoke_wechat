@@ -74,7 +74,7 @@
 		<!--goodsList start-->
 		<view class="goodsList flex" hidden="{{showSearch}}">
 			<!--category start-->
-			<scroll-view class="category fl" scroll-y style="height:{{mWH.height+20}}px">
+			<scroll-view class="category fl" scroll-y style="height:{{mWH.height}}px">
 				<block wx:for="{{category}}" wx:key="">
 					<view class="item {{item.id == active.id?'active':''}}" id="{{item.id}}" bindtap="choseCate">
 						<view class="category-item__text">{{item.name}}</view>
@@ -104,7 +104,7 @@
           </view>-->
         </view>
         <!--goods start-->
-        <scroll-view class="goods fr flex-1" scroll-y bindscrolltolower="getMoreGoods" style="height:{{mWH.height}}px">
+        <scroll-view class="goods fr flex-1" scroll-y bindscrolltolower="getMoreGoods" style="height:{{mWH.height-22}}px">
           <view class="gItem active">
             <block wx:for="{{goods}}" wx:key="">
               <view class="zan-panel item" hidden="{{item.cid !== active.id}}">
@@ -134,7 +134,7 @@
                     </block>
                     <block wx:else>
                       <view class="quantity">
-                        <template is="zan-quantity" data="{{ ...item.skus[0].quantity, componentId: item.skus[0].id }}" /> </view>
+                        <template is="zan-quantity" data="{{ ...item.skus[0].quantity, componentId: item.skus[0].id,index:index }}" /> </view>
                     </block>
                   </view>
                 </view>
@@ -152,7 +152,7 @@
 		</view>
 		<!--goodsList end-->
 		<!--setOrder start-->
-		<view class="setOrder flex">
+		<view class="setOrder flex" hidden='{{totalQuantity == 0}}'>
 			<view class="cartInfo fl flex-1">
         <view bindtap="toggleDialog">
           <view class="cart-icon">
@@ -160,7 +160,7 @@
               <image class="img" src="../../../images/shoppingCart.png"></image>
             </view>
             <view class="cart-icon-count">
-              <view class="cart-icon-count-little">12</view>
+              <view class="cart-icon-count-little">{{totalQuantity}}</view>
             </view>
           </view>
           <view class="i">
@@ -214,7 +214,7 @@
 						<view class="item flex">
 							<view class="t fl">{{item.skus.longName}}</view>
 							<view class="m fl">￥{{item.skus.amount}}</view>
-              <input type='text' class="input-quantity" value='22'></input>
+              <input type='text' class="input-quantity" value='{{item.skus.quantity.quantity}}'></input>
               <image class="del_this" data-id='{{item.skus.id}}' bindtap="delThis" src="../../../images/shopcart_del.png"></image>
 							<view class="quantity fl flex-1" hidden='true'>
 								<template is="zan-quantity" data="{{ ...item.skus.quantity, componentId: item.skus.id }}" /> </view>

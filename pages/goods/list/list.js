@@ -25,6 +25,7 @@ Page(
       activeIndex: 0, //当前点击的规格的index
       shopcart: {}, //购物车列表
       totalPrice: 0, //商品总价
+      totalQuantity:0,
 
       popOn: false, //选择规格的弹窗是否开启
       showDialog: false, //是否显示购物车弹窗
@@ -70,12 +71,16 @@ Page(
     setMainHigh() {
       //设置页面高度
       var _this = this
+      //var removeHeight = 40
+      //if(this.data.totalQuantity != 0) {
+       // removeHeight = 80
+     // }
       wx.getSystemInfo({
         success(res) {
           _this.setData({
             mWH: {
               width: res.windowWidth,
-              height: res.windowHeight - 50 - 60
+              height: res.windowHeight - 90
             }
           })
         }
@@ -90,7 +95,6 @@ Page(
           data: {}
         })
         .then(res => {
-          console.log(res)
           //给每个分类添加一个page值
           for (var i in res.data) {
             res.data[i].page = 0
@@ -181,7 +185,6 @@ Page(
           }
         })
         .then(res => {
-          console.log(res)
           _this.setData({
             loading: false
           })
@@ -204,7 +207,7 @@ Page(
     },
     setGoodQuan(newgoods, first) {
       //设置每个商品的点击加减
-      let { goods, searchGoods, showSearch } = this.data
+      let { goods, searchGoods, showSearch, shopcart} = this.data
       for (var i in newgoods) {
         newgoods[i].quantity = {
           quantity: 0,
@@ -212,9 +215,17 @@ Page(
           max: newgoods[i].skus[0].quantityAvailable
         }
         var gSkus = newgoods[i].skus
+        var quan = 0
         for (var j in gSkus) {
+          var skuId = gSkus[j].id
+          for (var z in shopcart) {
+            if (shopcart[z].skus.id == skuId){
+              quan = shopcart[z].skus.quantity.quantity
+              break;
+            }
+          }
           gSkus[j].quantity = {
-            quantity: 0,
+            quantity: quan,
             min: 0,
             max: gSkus[j].quantityAvailable
           }
@@ -272,9 +283,15 @@ Page(
       }
       //添加至购物车
       _this.addShopCart()
+      var list = this.data.shopcart;
+      var total = 0;
+      for (var i in list) {
+        total += list[i].skus.quantity.quantity
+      }
       this.setData({
         goods,
-        searchGoods
+        searchGoods,
+        totalQuantity:total
       })
     },
     choseCate(e) {
@@ -361,12 +378,41 @@ Page(
         shopcart: {},
         goods,
         searchGoods,
+        totalQuantity: 0,
         showDialog: false
       })
       this.countTotal()
     },
     delThis(e) {
-      console.log(e.currentTarget.dataset.id);
+      var id = e.currentTarget.dataset.id;
+      var list = this.data.shopcart;
+      delete list[id];
+      var total = 0;
+      var totalPrice = 0;
+      for (var i in list) {
+        total += list[i].skus.quantity.quantity
+        totalPrice += list[i].skus.quantity.quantity * list[i].skus.amount
+      }
+      var goodsList = this.data.goods;
+      first:
+      for(var i in goodsList) {
+        var skusList = goodsList[i].skus
+        for(var j in skusList) {
+          if(id == skusList[j].id) {
+            //goodsList[i].quantity.quantity = 0  
+            //不知道这个quantity是干嘛的
+            goodsList[i].skus[j].quantity.quantity = 0
+            break first
+          }
+        }
+      }
+      this.setData({
+        shopcart:list,
+        showDialog:!isEmptyObject(list),
+        totalQuantity:total,
+        totalPrice: totalPrice,
+        goods: goodsList
+      })
     },
     countTotal() {
       //计算购物车总价
@@ -664,7 +710,6 @@ Page(
           }
         })
         .then(res => {
-          console.log(res)
           wx.hideLoading()
           this.setData({ loading: false })
           if (res.errorCode == 200) {
@@ -693,7 +738,6 @@ Page(
         })
         .then(res => {
           wx.hideLoading()
-          console.log(res)
           this.setData({ detail: res.data, detailSkus: res.data.skus[0] })
         })
     },
@@ -711,7 +755,6 @@ Page(
       this.getGoods()
     },
     setNumber(e) {
-      console.log(e)
       const number = Number(e.detail.value)
       this.setData({ number })
     },
@@ -745,3 +788,11 @@ Page(
     //   }
   })
 )
+
+function isEmptyObject(obj) {
+
+  for (var key in obj) {
+     return false
+  };
+  return true
+};
